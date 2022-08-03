@@ -8,6 +8,8 @@ abstract class Routes {
   static const LOGIN_SCREEN = _Paths.LOGIN_SCREEN;
   static const SIGNUP_SCREEN = _Paths.SIGNUP_SCREEN;
   static const ONBOARD_SCREEN = _Paths.ONBOARD_SCREEN;
+  static const ADD_LOCATION_SCREEN = _Paths.ADD_LOCATION_SCREEN;
+  static const INTRODUCTION_SCREEN = _Paths.INTRODUCTION_SCREEN;
 }
 
 abstract class _Paths {
@@ -17,4 +19,6 @@ abstract class _Paths {
   static const LOGIN_SCREEN = '/login-screen';
   static const SIGNUP_SCREEN = '/signup-screen';
   static const ONBOARD_SCREEN = '/onboard-screen';
+  static const ADD_LOCATION_SCREEN = '/add-location-screen';
+  static const INTRODUCTION_SCREEN = '/introduction-screen';
 }

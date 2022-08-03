@@ -1,4 +1,5 @@
 
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
-Color maincolor = Colors.pink.shade700;
+Color maincolor = HexColor("#DB4747");

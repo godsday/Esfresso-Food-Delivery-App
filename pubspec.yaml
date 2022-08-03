@@ -8,6 +8,7 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
+  hexcolor: 2.0.7
   flutter: 
     sdk: flutter
 
@@ -17,5 +18,9 @@ dev_dependencies:
     sdk: flutter
 
 flutter: 
+  assets: 
+    - assets/images/deliveryman.png
+    - assets/images/pizza.png
+    - assets/images/google.png
   uses-material-design: true
 
