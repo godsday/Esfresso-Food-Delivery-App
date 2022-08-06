@@ -1,4 +1,5 @@
 import 'package:esfresso/app/constants/constants.dart';
+import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -70,7 +71,8 @@ class SignupScreenView extends GetView<SignupScreenController> {
                                             mainAxisAlignment: MainAxisAlignment.center,
 
                              children: [
-                               Wrap(children:[ Text("Already have an account?",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 12)),GestureDetector(child: Text(" Log in",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 12,color: maincolor)))]),
+                               Wrap(children:[ Text("Already have an account?",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 12)),GestureDetector(onTap: (){Get.toNamed(Routes.LOGIN_SCREEN);},
+                                child: Text(" Log in",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 12,color: maincolor)))]),
                              ],
                            )
       

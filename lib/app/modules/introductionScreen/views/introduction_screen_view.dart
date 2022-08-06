@@ -14,126 +14,126 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.center,
-                clipBehavior: Clip.none,
-              children:[ ClipPath(
-                clipper: CurveClipper(),
-                child: Container(
-                  width: width,
-                  height: height/2,
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(70.0),
-                          bottomRight: Radius.circular(35.0)),
-                      color: maincolor),
+      body: Column(
+        children: [
+          Stack(
+            alignment: Alignment.center,
+              clipBehavior: Clip.none,
+            children:[ ClipPath(
+              clipper: CurveClipper(),
+              child: Container(
+                width: width,
+                height: height/2,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(70.0),
+                        bottomRight: Radius.circular(35.0)),
+                    color: maincolor),
+                
+                 
                   
-                   
-                    
-                    
-                   
-                ),
+                  
+                 
               ),
-                const Positioned(
-                          top: 131,
-                          child: Text(
-                            "Your favouraite foods delivered \n              fast at your door.",
-                            style:  TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
-                          )),
-                 Positioned(
-                          right: 30,
-                          top: 20,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                           
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: const Size(10, 5),
-                                primary: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30))),
-                                     child: const Text(
-                              "Skip",
-                              style:  TextStyle(color: Colors.black),
-                            ),
-                          )),
-                            const Positioned(
-                        bottom: -189,
-                        child: Image(
-                          height: 400,
-                          width: 300,
-                          image:
-                         AssetImage("assets/images/pizza.png") ,
-                          fit: BoxFit.cover,
-                        ),
-                      )
-              
-              ],
+            ),
+              const Positioned(
+                        top: 131,
+                        child: Text(
+                          "Your favouraite foods delivered \n              fast at your door.",
+                          style:  TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
+                        )),
+               Positioned(
+                        right: 30,
+                        top: 40,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Get.offNamed(Routes.HOME_SCREEN);
+                          },
+                         
+                          style: ElevatedButton.styleFrom(
+                              fixedSize: const Size(10, 1),
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30))),
+                                   child: const Text(
+                            "Skip",
+                            style:  TextStyle(color: Colors.black),
+                          ),
+                        )),
+                          const Positioned(
+                      bottom: -189,
+                      child: Image(
+                        height: 400,
+                        width: 300,
+                        image:
+                       AssetImage("assets/images/pizza.png") ,
+                        fit: BoxFit.cover,
+                      ),
+                    )
             
-            ),
-            SizedBox(height: 120,),
-        
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                 SizedBox(width: 30,),
-                Container(
-                  width: 80,
-                  height: 2,
-                  color: Colors.black,
-                ),
-                const Text("Sign up with",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
-                   Container(
-                  width: 80,
-                  height: 2,
-                  color: Colors.black,
-                ),
-                 SizedBox(width: 30,),
-              ],
-            ),
-            SizedBox(height: 30,),
-            ElevatedButton(
-                            onPressed: () {},
-                           
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: const Size(140, 45),
-                                primary: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30))),
-                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                       children: [
-                                        Image.asset(width:30,height:25,"assets/images/google.png"),
-                                         const Text(
-                              "Google",
-                              style:  TextStyle(color: Colors.black),
-                            ),
-                                       ],
-                                     ),
-                           
+            ],
+          
+          ),
+          SizedBox(height: 120,),
+      
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+               SizedBox(width: 30,),
+              Container(
+                width: 80,
+                height: 2,
+                color: Colors.black,
+              ),
+              const Text("Sign up with",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+                 Container(
+                width: 80,
+                height: 2,
+                color: Colors.black,
+              ),
+               SizedBox(width: 30,),
+            ],
+          ),
+          SizedBox(height: 30,),
+          ElevatedButton(
+                          onPressed: () {},
+                         
+                          style: ElevatedButton.styleFrom(
+                              fixedSize: const Size(140, 45),
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30))),
+                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                     children: [
+                                      Image.asset(width:30,height:25,"assets/images/google.png"),
+                                       const Text(
+                            "Google",
+                            style:  TextStyle(color: Colors.black),
                           ),
-                          SizedBox(height: 30,),
-                           ElevatedButton(
-                            onPressed: () {
-                              Get.toNamed(Routes.SIGNUP_SCREEN);
-                            },
-                           
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: const Size(290, 55),
-                                primary: Colors.white,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30))),
-                                     child: const Text(
-                              "Start with email or phone",
-                              style:  TextStyle(color: Colors.black),
-                            ),
+                                     ],
+                                   ),
+                         
+                        ),
+                        SizedBox(height: 30,),
+                         ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.SIGNUP_SCREEN);
+                          },
+                         
+                          style: ElevatedButton.styleFrom(
+                              fixedSize: const Size(290, 55),
+                              primary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30))),
+                                   child: const Text(
+                            "Start with email or phone",
+                            style:  TextStyle(color: Colors.black),
                           ),
-                          SizedBox(height: 30,),
-                           Wrap(children:[ Text("Already have an account?",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 13)),GestureDetector(child: Text(" Sign in",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14)))])
-          ],
-        ),
+                        ),
+                        SizedBox(height: 30,),
+                         Wrap(children:[ Text("Already have an account?",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 13)),GestureDetector(child: Text(" Sign in",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14)))])
+        ],
       ),
     );
   }

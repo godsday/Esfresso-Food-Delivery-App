@@ -23,7 +23,7 @@ class SplashscreenController extends GetxController {
 
   Future naviagetoSignUp()async {
     await Future.delayed(Duration(seconds: 3));
-    Get.offNamed(Routes.ONBOARD_SCREEN);
+    Get.offNamed(Routes.HOME_SCREEN);
 
   }
 }

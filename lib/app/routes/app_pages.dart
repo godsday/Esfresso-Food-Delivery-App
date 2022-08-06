@@ -4,6 +4,8 @@ import '../modules/addLocationScreen/bindings/add_location_screen_binding.dart';
 import '../modules/addLocationScreen/views/add_location_screen_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/homeScreen/bindings/home_screen_binding.dart';
+import '../modules/homeScreen/views/home_screen_view.dart';
 import '../modules/introductionScreen/bindings/introduction_screen_binding.dart';
 import '../modules/introductionScreen/views/introduction_screen_view.dart';
 import '../modules/loginScreen/bindings/login_screen_binding.dart';
@@ -35,12 +37,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LOGIN_SCREEN,
-      page: () => const LoginScreenView(),
+      page: () => LoginScreenView(),
       binding: LoginScreenBinding(),
     ),
     GetPage(
       name: _Paths.SIGNUP_SCREEN,
-      page: () =>  SignupScreenView(),
+      page: () => SignupScreenView(),
       binding: SignupScreenBinding(),
     ),
     GetPage(
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.INTRODUCTION_SCREEN,
       page: () => const IntroductionScreenView(),
       binding: IntroductionScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_SCREEN,
+      page: () =>  HomeScreenView(),
+      binding: HomeScreenBinding(),
     ),
   ];
 }

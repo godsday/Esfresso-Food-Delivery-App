@@ -22,5 +22,11 @@ flutter:
     - assets/images/deliveryman.png
     - assets/images/pizza.png
     - assets/images/google.png
+    - assets/images/map.png
+    - assets/images/profilepic.png
+    - assets/images/filtericon.png
+    - assets/images/fooditem.png
+    - assets/images/bike.png
+    - assets/images/timer.png
   uses-material-design: true
 

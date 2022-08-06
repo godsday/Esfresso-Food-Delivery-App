@@ -19,18 +19,20 @@ class AddLocationScreenView extends GetView<AddLocationScreenController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const SizedBox(height: 400,),
+              SizedBox(height: 40,),
+               SizedBox(child: Image.asset("assets/images/map.png")),
               const SizedBox(height: 20,),
               const Text("Esfresso uses your location \n        to show restaurent",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
-              const SizedBox(height: 30,),
+              const SizedBox(height: 20,),
               ElevatedButton(onPressed: (){},style: ElevatedButton.styleFrom(primary: maincolor,fixedSize: const Size(270, 42)),
                child: const Text("Use Current Location")),
-               const SizedBox(height: 20,),
                 ElevatedButton(onPressed: (){
                   Get.toNamed(Routes.INTRODUCTION_SCREEN);
                 },style: ElevatedButton.styleFrom(primary:HexColor('#ffefef') ,fixedSize: const Size(270, 42),
                 side:BorderSide(color: Colors.blueGrey.shade100)),
                child: const Text("Use Another Location",style:  TextStyle(color: Colors.black),)),
+                              const SizedBox(height: 20,),
+
             ],
           ),
         )

@@ -1,3 +1,4 @@
+import 'package:esfresso/app/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,6 +11,8 @@ void main() {
       title: "Esfresso",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.red,primaryColor: maincolor),
     ),
   );
 }
