@@ -28,5 +28,17 @@ flutter:
     - assets/images/fooditem.png
     - assets/images/bike.png
     - assets/images/timer.png
+    - assets/itemList/item1.png
+    - assets/itemList/item2.png
+    - assets/itemList/item3.png
+    - assets/itemList/item4.png
+    - assets/itemList/item5.png
+    - assets/popularList/popular1.png
+    - assets/popularList/popular2.png
+    - assets/popularList/Pizza 3.png
+    - assets/popularList/Pizza 4.png
+
+    
+
   uses-material-design: true
 

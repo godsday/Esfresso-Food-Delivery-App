@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/addLocationScreen/bindings/add_location_screen_binding.dart';
 import '../modules/addLocationScreen/views/add_location_screen_view.dart';
+import '../modules/foodItemScreen/bindings/food_item_screen_binding.dart';
+import '../modules/foodItemScreen/views/food_item_screen_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/homeScreen/bindings/home_screen_binding.dart';
@@ -12,6 +14,8 @@ import '../modules/loginScreen/bindings/login_screen_binding.dart';
 import '../modules/loginScreen/views/login_screen_view.dart';
 import '../modules/onboardScreen/bindings/onboard_screen_binding.dart';
 import '../modules/onboardScreen/views/onboard_screen_view.dart';
+import '../modules/restaurantScreen/bindings/restaurant_screen_binding.dart';
+import '../modules/restaurantScreen/views/restaurant_screen_view.dart';
 import '../modules/signupScreen/bindings/signup_screen_binding.dart';
 import '../modules/signupScreen/views/signup_screen_view.dart';
 import '../modules/splashscreen/bindings/splashscreen_binding.dart';
@@ -62,8 +66,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HOME_SCREEN,
-      page: () =>  HomeScreenView(),
+      page: () => HomeScreenView(),
       binding: HomeScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.FOOD_ITEM_SCREEN,
+      page: () => const FoodItemScreenView(),
+      binding: FoodItemScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESTAURANT_SCREEN,
+      page: () => const RestaurantScreenView(),
+      binding: RestaurantScreenBinding(),
     ),
   ];
 }

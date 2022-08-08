@@ -1,5 +1,9 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
+import 'dart:html';
 
 import 'package:esfresso/app/constants/constants.dart';
+import 'package:esfresso/app/constants/itemList.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -28,8 +32,12 @@ class HomeScreenView extends GetView<HomeScreenController> {
               },
               child: Container(
                 width: 40,
-                decoration:
-                    const BoxDecoration(boxShadow: [const BoxShadow(color: Colors.grey)]),
+                height: 10,
+                decoration: const BoxDecoration(
+                   // boxShadow: [ BoxShadow(
+                     // color: Colors.grey
+                    // )]
+                      ),
                 child: const Icon(
                   Icons.list_rounded,
                   color: Colors.blueGrey,
@@ -76,206 +84,369 @@ class HomeScreenView extends GetView<HomeScreenController> {
         //   //backgroundColor: Colors.amber,
         //  ),
 
-        body: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "What would you like \n to order",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 300,
-                      height: 40,
-                      child: TextField(
-                        controller: searchController,
-                        decoration: InputDecoration(
-                          hintText: "Find for food or restaurant...",
-                          hintStyle: TextStyle(
-                              fontSize: 13, color: Colors.blueGrey.shade300),
-                          prefixIcon: const Icon(Icons.search),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(14),
-                          boxShadow: [
-                            const BoxShadow(color: Colors.grey, blurRadius: 2)
-                          ]
-                          // color: Colors.amber
-                          //image: DecorationImage(image: AssetImage("assets/images/filtericon.png",),fit: BoxFit.fill)
-                          ),
-                      child: Icon(
-                        Icons.dns_outlined,
-                        color: maincolor,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Expanded(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                        GestureDetector(
-                          onTap: (){
-                          selected=true;
-                           
-
-                         print("Clickedd");
-
-                          },
-                          child: Container(
-                            width: 80,
-                            height: 130,
-                            decoration: BoxDecoration(
-                              color:selected==true? activeColor:inActiveColor,
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                const CircleAvatar(
-                                  radius: 33,
-                                  backgroundImage:
-                                      AssetImage("assets/images/profilepic.png"),
-                                ),
-                                Text("Burger $index",
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold)),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox( width: 20,)
-                      ]);
-                    },
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10.0, right: 10),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "What would you like \n to order",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Featured Restaurants",style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text("View All >",style: TextStyle(color: maincolor),)
-                  ],
-                ),
-                SizedBox(height: 5,),
-              Expanded( child: Container(
-                 width: 250,
-                      height: 400,
-                      decoration: BoxDecoration(
-                         borderRadius: BorderRadius.circular(20),
-                         color: Colors.amber),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 250,
-                          height: 150,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(image: AssetImage("assets/images/fooditem.png"),fit: BoxFit.cover),
-                             borderRadius: BorderRadius.circular(20),
-                             
-
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                   // mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 300,
+                        height: 40,
+                        child: TextField(
+                          controller: searchController,
+                          decoration: InputDecoration(
+                            hintText: "Find for food or restaurant...",
+                            hintStyle: TextStyle(
+                                fontSize: 13, color: Colors.blueGrey.shade300),
+                            prefixIcon: const Icon(Icons.search),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
                           ),
                         ),
-                        Positioned(
-                          top: 15,
-                          left: 10,
-                          child: Container(
-                           
-                            width: 45,
-                            height: 25,
-                             alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(20),
-                               color: Colors.white),
-                               child: Row(
-                                 children: [
-                                   Text("4.5",style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
-                                   Icon(Icons.star,color: Colors.yellow.shade900,size: 15,)
-                                 ],
-                               ),
-                          ),
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(14),
+                            boxShadow:const [
+                               BoxShadow(
+                                color: Colors.grey, blurRadius: 2
+                                )
+                            ]
+                            // color: Colors.amber
+                            //image: DecorationImage(image: AssetImage("assets/images/filtericon.png",),fit: BoxFit.fill)
+                            ),
+                        child: Icon(
+                          Icons.dns_outlined,
+                          color: maincolor,
                         ),
-                        Positioned(
-                          top: 15,
-                          right: 10,
-                          child: Container(
-                           
-                            width: 30,
-                            height:30,
-                             alignment: Alignment.center,
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                  height: 150,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        String data = items[index];
+                        String nameData = itemName[index];
+                        return Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                          GestureDetector(
+                            onTap: () {
+                              selected = true;
+                              print(itemName[index]);
+              
+                              print("Clickedd");
+                              print(index);
+                            },
+                            child: Container(
+                              width: 80,
+                              height: 130,
                               decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(70),
-                               color: Colors.white),
-                               child: Icon(Icons.favorite_border,size: 16,),
-                               ))
+                                color: selected == true
+                                    ? activeColor
+                                    : inActiveColor,
+                                borderRadius: BorderRadius.circular(40),
+                              ),
+                              child: Column(
+                                //mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  CircleAvatar(
+                                    radius: 33,
+                                    backgroundImage: AssetImage(data),
+                                  ),
+                                  Text(nameData,
+                                      style: TextStyle(
+                                          color: selected == true
+                                              ? inActiveColor
+                                              : Colors.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold)),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          )
+                        ]);
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Featured Restaurants",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18)),
+                      Text(
+                        "View All >",
+                        style: TextStyle(color: maincolor),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  SizedBox(
+                    height: 300,
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 3,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              GestureDetector(
+                                onTap: (){
 
-                      ],
-                    ),
-                    Text("McDonald's",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                    Row(
-                      children: [
-                            SizedBox(height: 20,
-                            width: 20,
-                              child: Image.asset('assets/images/bike.png',fit: BoxFit.cover,)),
-                              Text("Free delivery"),
-                              SizedBox(width: 10,),
-                              SizedBox(height: 20,
-                            width: 20,
-                              child: Image.asset('assets/images/timer.png',fit: BoxFit.cover,)),
-                              Text("10-20 mins"),
+                                },
+                                child: Container(
+                                  width: 260,
+                                  height: 420,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.white),
+                                  child: Column(
+                                    // mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            width: 250,
+                                            height: 200,
+                                            decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      "assets/images/fooditem.png"),
+                                                  fit: BoxFit.cover),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  topRight:
+                                                       Radius.circular(20)),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            top: 15,
+                                            left: 10,
+                                            child: Container(
+                                              width: 45,
+                                              height: 25,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  color: Colors.white),
+                                              child: Wrap(
+                                                children: [
+                                                  const Text(
+                                                    "4.5",
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.yellow.shade900,
+                                                    size: 15,
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Positioned(
+                                              top: 15,
+                                              right: 10,
+                                              child: Container(
+                                                width: 30,
+                                                height: 30,
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(70),
+                                                    color: Colors.white),
+                                                child: const Icon(
+                                                  Icons.favorite_border,
+                                                  size: 16,
+                                                ),
+                                              ))
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10, top: 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text(
+                                              "McDonald's",
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                SizedBox(
+                                                    height: 20,
+                                                    width: 25,
+                                                    child: Image.asset(
+                                                      'assets/images/bike.png',
+                                                      fit: BoxFit.cover,
+                                                    )),
+                                                const Text("Free delivery"),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                SizedBox(
+                                                    height: 20,
+                                                    width: 20,
+                                                    child: Image.asset(
+                                                      'assets/images/timer.png',
+                                                      fit: BoxFit.cover,
+                                                    )),
+                                                const Text("10-20 mins"),
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: const [
+                                                MiniContainer(value: "BURGER"),
+                                                MiniContainer(value: "CHICKEN"),
+                                                MiniContainer(value: "FAST FOOD"),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              )
+                            ],
+                          );
+                        }),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Popular Items",
+                    style: TextStyle(
+                        color:  Color.fromARGB(179, 18, 18, 18),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    child: GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 1,
+                      children: List.generate(popularImage.length, (index) {
+                        return Container(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left:10.0,right: 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20)
+                                  ),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width: 200,
+                                        height: 150,
+                                        decoration: BoxDecoration(
+                                         // borderRadius:BorderRadius.circular(140),
+                                          image: DecorationImage(image: AssetImage(popularImage[index]),fit: BoxFit.fill)
+                                        // color: Colors.amber
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 60,
+                                        height: 20,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(30),
+                                          color: Colors.white
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  
+                                ),
+                              ),
+                              SizedBox(height: 20),
+                              Text("Chinese Noodle",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
                               
-                              
-                      ],
+                            ],
+                          ),
+                        );
+                      }),
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 20,
-                          color: Colors.grey,
-                        )
-                      ],
-                    )
-                  ],
-                  
-                ),
-                
-              ),)
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ));
+  }
+}
+
+class MiniContainer extends StatelessWidget {
+  final String value;
+  const MiniContainer({Key? key, required this.value}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: 75,
+      height: 27,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadiusDirectional.circular(4),
+        color: const Color.fromARGB(255, 236, 227, 227),
+      ),
+      child: Text(value),
+    );
   }
 }

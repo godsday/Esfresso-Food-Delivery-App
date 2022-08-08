@@ -11,6 +11,8 @@ abstract class Routes {
   static const ADD_LOCATION_SCREEN = _Paths.ADD_LOCATION_SCREEN;
   static const INTRODUCTION_SCREEN = _Paths.INTRODUCTION_SCREEN;
   static const HOME_SCREEN = _Paths.HOME_SCREEN;
+  static const FOOD_ITEM_SCREEN = _Paths.FOOD_ITEM_SCREEN;
+  static const RESTAURANT_SCREEN = _Paths.RESTAURANT_SCREEN;
 }
 
 abstract class _Paths {
@@ -23,4 +25,6 @@ abstract class _Paths {
   static const ADD_LOCATION_SCREEN = '/add-location-screen';
   static const INTRODUCTION_SCREEN = '/introduction-screen';
   static const HOME_SCREEN = '/home-screen';
+  static const FOOD_ITEM_SCREEN = '/food-item-screen';
+  static const RESTAURANT_SCREEN = '/restaurant-screen';
 }
