@@ -1,11 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class FoodItemScreenController extends GetxController {
-  //TODO: Implement FoodItemScreenController
+class CartScreenController extends GetxController {
+  //TODO: Implement CartScreenController
 
-  dynamic datas =Get.arguments;
-  
+    dynamic cartDatas =Get.arguments;
+  // checkdata(){
+  //    if(cartDatas==null){
+  //     return Container();
+  // }
 
+  // }
   final count = 0.obs;
   @override
   void onInit() {
@@ -23,9 +28,4 @@ class FoodItemScreenController extends GetxController {
   }
 
   void increment() => count.value++;
-    void decrement() {
-      if(count>0){
-        count.value--;
-      }
-    } 
 }

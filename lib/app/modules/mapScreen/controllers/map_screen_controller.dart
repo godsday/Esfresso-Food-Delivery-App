@@ -1,10 +1,7 @@
 import 'package:get/get.dart';
 
-class FoodItemScreenController extends GetxController {
-  //TODO: Implement FoodItemScreenController
-
-  dynamic datas =Get.arguments;
-  
+class MapScreenController extends GetxController {
+  //TODO: Implement MapScreenController
 
   final count = 0.obs;
   @override
@@ -23,9 +20,4 @@ class FoodItemScreenController extends GetxController {
   }
 
   void increment() => count.value++;
-    void decrement() {
-      if(count>0){
-        count.value--;
-      }
-    } 
 }

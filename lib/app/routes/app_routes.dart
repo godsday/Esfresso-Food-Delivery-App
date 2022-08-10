@@ -3,7 +3,7 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-  static const HOME = _Paths.HOME;
+  // static const HOME = _Paths.HOME;
   static const SPLASHSCREEN = _Paths.SPLASHSCREEN;
   static const LOGIN_SCREEN = _Paths.LOGIN_SCREEN;
   static const SIGNUP_SCREEN = _Paths.SIGNUP_SCREEN;
@@ -13,11 +13,14 @@ abstract class Routes {
   static const HOME_SCREEN = _Paths.HOME_SCREEN;
   static const FOOD_ITEM_SCREEN = _Paths.FOOD_ITEM_SCREEN;
   static const RESTAURANT_SCREEN = _Paths.RESTAURANT_SCREEN;
+  static const FAVOURITE_SCREEN = _Paths.FAVOURITE_SCREEN;
+  static const CART_SCREEN = _Paths.CART_SCREEN;
+  static const MAP_SCREEN = _Paths.MAP_SCREEN;
 }
 
 abstract class _Paths {
   _Paths._();
-  static const HOME = '/home';
+  // static const HOME = '/home';
   static const SPLASHSCREEN = '/splashscreen';
   static const LOGIN_SCREEN = '/login-screen';
   static const SIGNUP_SCREEN = '/signup-screen';
@@ -27,4 +30,7 @@ abstract class _Paths {
   static const HOME_SCREEN = '/home-screen';
   static const FOOD_ITEM_SCREEN = '/food-item-screen';
   static const RESTAURANT_SCREEN = '/restaurant-screen';
+  static const FAVOURITE_SCREEN = '/favourite-screen';
+  static const CART_SCREEN = '/cart-screen';
+  static const MAP_SCREEN = '/map-screen';
 }

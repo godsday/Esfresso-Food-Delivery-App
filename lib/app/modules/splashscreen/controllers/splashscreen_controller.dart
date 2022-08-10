@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 class SplashscreenController extends GetxController {
   //TODO: Implement SplashscreenController
 
-  final count = 0.obs;
+  
   @override
-  void onInit()async {
+  void onInit() async {
     super.onInit();
     await naviagetoSignUp();
   }
@@ -21,9 +21,8 @@ class SplashscreenController extends GetxController {
     super.onClose();
   }
 
-  Future naviagetoSignUp()async {
+  Future naviagetoSignUp() async {
     await Future.delayed(Duration(seconds: 3));
-    Get.offNamed(Routes.HOME_SCREEN);
-
+    Get.offNamed(Routes.ONBOARD_SCREEN);
   }
 }

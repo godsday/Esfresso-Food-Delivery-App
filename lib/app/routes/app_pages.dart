@@ -2,6 +2,10 @@ import 'package:get/get.dart';
 
 import '../modules/addLocationScreen/bindings/add_location_screen_binding.dart';
 import '../modules/addLocationScreen/views/add_location_screen_view.dart';
+import '../modules/cartScreen/bindings/cart_screen_binding.dart';
+import '../modules/cartScreen/views/cart_screen_view.dart';
+import '../modules/favouriteScreen/bindings/favourite_screen_binding.dart';
+import '../modules/favouriteScreen/views/favourite_screen_view.dart';
 import '../modules/foodItemScreen/bindings/food_item_screen_binding.dart';
 import '../modules/foodItemScreen/views/food_item_screen_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -12,6 +16,8 @@ import '../modules/introductionScreen/bindings/introduction_screen_binding.dart'
 import '../modules/introductionScreen/views/introduction_screen_view.dart';
 import '../modules/loginScreen/bindings/login_screen_binding.dart';
 import '../modules/loginScreen/views/login_screen_view.dart';
+import '../modules/mapScreen/bindings/map_screen_binding.dart';
+import '../modules/mapScreen/views/map_screen_view.dart';
 import '../modules/onboardScreen/bindings/onboard_screen_binding.dart';
 import '../modules/onboardScreen/views/onboard_screen_view.dart';
 import '../modules/restaurantScreen/bindings/restaurant_screen_binding.dart';
@@ -29,11 +35,11 @@ class AppPages {
   static const INITIAL = Routes.SPLASHSCREEN;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
-    ),
+    // GetPage(
+    //   name: _Paths.HOME,
+    //   page: () => const HomeView(),
+    //   binding: HomeBinding(),
+    // ),
     GetPage(
       name: _Paths.SPLASHSCREEN,
       page: () => SplashscreenView(),
@@ -71,13 +77,28 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.FOOD_ITEM_SCREEN,
-      page: () => const FoodItemScreenView(),
+      page: () => FoodItemScreenView(),
       binding: FoodItemScreenBinding(),
     ),
     GetPage(
       name: _Paths.RESTAURANT_SCREEN,
       page: () => const RestaurantScreenView(),
       binding: RestaurantScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAVOURITE_SCREEN,
+      page: () => const FavouriteScreenView(),
+      binding: FavouriteScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.CART_SCREEN,
+      page: () => CartScreenView(),
+      binding: CartScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAP_SCREEN,
+      page: () => const MapScreenView(),
+      binding: MapScreenBinding(),
     ),
   ];
 }

@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'dart:html';
+
 
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/constants/itemList.dart';
+import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -34,10 +35,10 @@ class HomeScreenView extends GetView<HomeScreenController> {
                 width: 40,
                 height: 10,
                 decoration: const BoxDecoration(
-                   // boxShadow: [ BoxShadow(
-                     // color: Colors.grey
+                    // boxShadow: [ BoxShadow(
+                    // color: Colors.grey
                     // )]
-                      ),
+                    ),
                 child: const Icon(
                   Icons.list_rounded,
                   color: Colors.blueGrey,
@@ -100,7 +101,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                     height: 20,
                   ),
                   Row(
-                   // mainAxisSize: MainAxisSize.min,
+                    // mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
@@ -124,10 +125,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(14),
-                            boxShadow:const [
-                               BoxShadow(
-                                color: Colors.grey, blurRadius: 2
-                                )
+                            boxShadow: const [
+                              BoxShadow(color: Colors.grey, blurRadius: 2)
                             ]
                             // color: Colors.amber
                             //image: DecorationImage(image: AssetImage("assets/images/filtericon.png",),fit: BoxFit.fill)
@@ -141,22 +140,19 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
-                  height: 150,
+                    height: 150,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: items.length,
                       itemBuilder: (context, index) {
-                        String data = items[index];
-                        String nameData = itemName[index];
-                        return Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
+                        // String data = items[index]['image'];
+                        // String nameData = items[index]['itemName'];
+                        return Row(mainAxisSize: MainAxisSize.min, children: [
                           GestureDetector(
                             onTap: () {
                               selected = true;
-                              print(itemName[index]);
-              
+                              //print(itemName[index]);
                               print("Clickedd");
                               print(index);
                             },
@@ -171,13 +167,15 @@ class HomeScreenView extends GetView<HomeScreenController> {
                               ),
                               child: Column(
                                 //mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   CircleAvatar(
                                     radius: 33,
-                                    backgroundImage: AssetImage(data),
+                                    backgroundImage:
+                                        AssetImage(items[index]['image']),
                                   ),
-                                  Text(nameData,
+                                  Text(items[index]['itemName'],
                                       style: TextStyle(
                                           color: selected == true
                                               ? inActiveColor
@@ -217,6 +215,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   SizedBox(
                     height: 300,
                     child: ListView.builder(
+                        ////////////////////////////////////////////rest
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: 3,
@@ -224,8 +223,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                           return Row(
                             children: [
                               GestureDetector(
-                                onTap: (){
-
+                                onTap: () {
+                                  Get.toNamed(Routes.RESTAURANT_SCREEN);
                                 },
                                 child: Container(
                                   width: 260,
@@ -235,7 +234,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                       color: Colors.white),
                                   child: Column(
                                     // mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Stack(
                                         children: [
@@ -250,7 +250,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                               borderRadius: BorderRadius.only(
                                                   topLeft: Radius.circular(20),
                                                   topRight:
-                                                       Radius.circular(20)),
+                                                      Radius.circular(20)),
                                             ),
                                           ),
                                           Positioned(
@@ -275,7 +275,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                                   ),
                                                   Icon(
                                                     Icons.star,
-                                                    color: Colors.yellow.shade900,
+                                                    color:
+                                                        Colors.yellow.shade900,
                                                     size: 15,
                                                   )
                                                 ],
@@ -291,13 +292,14 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                                 alignment: Alignment.center,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(70),
+                                                        BorderRadius.circular(
+                                                            70),
                                                     color: Colors.white),
                                                 child: const Icon(
                                                   Icons.favorite_border,
                                                   size: 16,
                                                 ),
-                                              ))
+                                              )),
                                         ],
                                       ),
                                       Padding(
@@ -350,7 +352,8 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                               children: const [
                                                 MiniContainer(value: "BURGER"),
                                                 MiniContainer(value: "CHICKEN"),
-                                                MiniContainer(value: "FAST FOOD"),
+                                                MiniContainer(
+                                                    value: "FAST FOOD"),
                                               ],
                                             )
                                           ],
@@ -371,58 +374,77 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   const Text(
                     "Popular Items",
                     style: TextStyle(
-                        color:  Color.fromARGB(179, 18, 18, 18),
+                        color: Color.fromARGB(179, 18, 18, 18),
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
-                  SizedBox(
-                    child: GridView.count(
-                      shrinkWrap: true,
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 1,
-                      children: List.generate(popularImage.length, (index) {
-                        return Container(
+                  GridView.count(
+                    shrinkWrap: true,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15,
+                    childAspectRatio: 1,
+                    children: List.generate(popularList.length, (index) {
+                      return GestureDetector(
+                        onTap: (){
+                         Get.toNamed(Routes.FOOD_ITEM_SCREEN,arguments:
+                          popularList[index]
+                          );
+
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                                          color: Colors.amber,
+                                          borderRadius: BorderRadius.circular(10)
+                          ),
+                           
+                           height: 300,
                           child: Column(
+                          //  mainAxisSize: MainAxisSize.max,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left:10.0,right: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20)
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        width: 200,
-                                        height: 150,
-                                        decoration: BoxDecoration(
-                                         // borderRadius:BorderRadius.circular(140),
-                                          image: DecorationImage(image: AssetImage(popularImage[index]),fit: BoxFit.fill)
+                              Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  Container(
+                                    width: 200,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                         borderRadius:BorderRadius.circular(30),
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                popularList[index]['image']),
+                                            fit: BoxFit.fill)
                                         // color: Colors.amber
                                         ),
-                                      ),
-                                      Container(
-                                        width: 60,
-                                        height: 20,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(30),
-                                          color: Colors.white
-                                        ),
-                                      )
-                                    ],
                                   ),
+                                  Container(
+                                    width: 60,
+                                    height: 20,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(30),
+                                        color: Colors.white),
+                                  )
                                   
-                                ),
+                                ],
                               ),
-                              SizedBox(height: 20),
-                              Text("Chinese Noodle",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)
-                              
+                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                 Text(
+                               popularList[index]['name'],
+                               style: const TextStyle(
+                                   fontSize: 20,
+                                   fontWeight: FontWeight.bold),
+                                  ),
+                                 // Text("data")
+                              ],
+                             )
                             ],
                           ),
-                        );
-                      }),
-                    ),
+                        ),
+                      );
+                    }),
                   )
                 ],
               ),
