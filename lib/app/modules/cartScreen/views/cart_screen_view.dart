@@ -110,11 +110,12 @@ class CartScreenView extends GetView<CartScreenController> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30)),
                         hintText: "promo code",
-                        suffix: ElevatedButton(
-                            // style: ElevatedButton.styleFrom(
-                            //  shape: StadiumBorder(),
-                            // primary: maincolor
-                            // ),
+                        suffix: TextButton(
+                            style:TextButton.styleFrom(
+                              backgroundColor: maincolor,
+                             shape: StadiumBorder(),
+                            fixedSize: Size(80, 35 )
+                            ),
                             onPressed: () {},
                             child: Text("data"))
                         // suffix: Container(

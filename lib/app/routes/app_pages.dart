@@ -97,7 +97,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MAP_SCREEN,
-      page: () => const MapScreenView(),
+      page: () =>  MapScreenView(),
       binding: MapScreenBinding(),
     ),
   ];

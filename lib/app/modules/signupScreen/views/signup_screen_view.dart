@@ -13,8 +13,8 @@ class SignupScreenView extends GetView<SignupScreenController> {
   final emailController = TextEditingController();
       final mobileNumberController = TextEditingController();
 
-      final passwordController = TextEditingController();
-            final confirmPasswordController = TextEditingController();
+      final otpController = TextEditingController();
+           // final confirmPasswordController = TextEditingController();
 
 
 
@@ -40,10 +40,9 @@ class SignupScreenView extends GetView<SignupScreenController> {
               SizedBox(height: 40),
                         CustomTextField(errorMassage: "errorMassage", icon: Icons.phone_android, type: TextInputType.number, controller: mobileNumberController, labeltext: "Mobile Number"),
                         SizedBox(height: 40),
-                 CustomTextField(errorMassage: "errorMassage", icon: Icons.key, type: TextInputType.emailAddress, controller: passwordController, labeltext: "Password"),
+                 CustomTextField(errorMassage: "errorMassage", icon: Icons.key, type: TextInputType.emailAddress, controller: otpController, labeltext: "OTP"),
               SizedBox(height: 40),
-               CustomTextField(errorMassage: "errorMassage", icon: Icons.email, type: TextInputType.emailAddress, controller: confirmPasswordController, labeltext: "Confirm Password"),
-              SizedBox(height: 40),
+             
                Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                  children: [

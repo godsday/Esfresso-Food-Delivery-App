@@ -1,14 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-
-
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/constants/itemList.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/home_screen_controller.dart';
 
 class HomeScreenView extends GetView<HomeScreenController> {
@@ -22,7 +18,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+       
           toolbarHeight: 90,
           leading: Padding(
             padding: const EdgeInsets.all(18.0),
@@ -50,6 +46,9 @@ class HomeScreenView extends GetView<HomeScreenController> {
           centerTitle: true,
           // title: Title(color: Colors.black26, child: Wrap(children:[ Text("Deliver to "),Icon(Icons.keyboard_arrow_down)])),
           title: Wrap(
+           crossAxisAlignment: WrapCrossAlignment.center,
+            //alignment:WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
             children: [
               const Text(
                 "Deliver to\n Beach Road Calicut",
@@ -80,10 +79,10 @@ class HomeScreenView extends GetView<HomeScreenController> {
           ],
           elevation: 0,
         ),
-        //  drawer: Drawer(
+         drawer: Drawer(
 
-        //   //backgroundColor: Colors.amber,
-        //  ),
+          backgroundColor: Colors.amber,
+         ),
 
         body: SafeArea(
           child: Padding(
@@ -379,6 +378,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   ),
                   const SizedBox(height: 10),
                   GridView.count(
+                    physics: ClampingScrollPhysics(),
                     shrinkWrap: true,
                     crossAxisCount: 2,
                     mainAxisSpacing: 15,
@@ -386,21 +386,17 @@ class HomeScreenView extends GetView<HomeScreenController> {
                     childAspectRatio: 1,
                     children: List.generate(popularList.length, (index) {
                       return GestureDetector(
-                        onTap: (){
-                         Get.toNamed(Routes.FOOD_ITEM_SCREEN,arguments:
-                          popularList[index]
-                          );
-
+                        onTap: () {
+                          Get.toNamed(Routes.FOOD_ITEM_SCREEN,
+                              arguments: popularList[index]);
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                                          color: Colors.amber,
-                                          borderRadius: BorderRadius.circular(10)
-                          ),
-                           
-                           height: 300,
+                              color: Colors.amber,
+                              borderRadius: BorderRadius.circular(10)),
+                         // height: 300,
                           child: Column(
-                          //  mainAxisSize: MainAxisSize.max,
+                            //  mainAxisSize: MainAxisSize.max,
                             children: [
                               Stack(
                                 clipBehavior: Clip.none,
@@ -409,7 +405,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                     width: 200,
                                     height: 150,
                                     decoration: BoxDecoration(
-                                         borderRadius:BorderRadius.circular(30),
+                                        borderRadius: BorderRadius.circular(30),
                                         image: DecorationImage(
                                             image: AssetImage(
                                                 popularList[index]['image']),
@@ -421,25 +417,23 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                     width: 60,
                                     height: 20,
                                     decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(30),
+                                        borderRadius: BorderRadius.circular(30),
                                         color: Colors.white),
                                   )
-                                  
                                 ],
                               ),
-                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                 Text(
-                               popularList[index]['name'],
-                               style: const TextStyle(
-                                   fontSize: 20,
-                                   fontWeight: FontWeight.bold),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    popularList[index]['name'],
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                 // Text("data")
-                              ],
-                             )
+                                   Text("data")
+                                ],
+                              )
                             ],
                           ),
                         ),

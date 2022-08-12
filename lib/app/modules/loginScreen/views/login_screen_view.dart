@@ -23,16 +23,17 @@ class LoginScreenView extends GetView<LoginScreenController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                SizedBox(height:50),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(height:190),
+                     // 
                       Text("Log in",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 34,color: maincolor),),
                     ],
                   ),
                     SizedBox(height: 40),
                CustomTextField(errorMassage: "errorMassage", icon: Icons.email, type: TextInputType.emailAddress, controller: emailController, labeltext: "Email"),
-                  SizedBox(height: 80),
+                  SizedBox(height: 30),
                CustomTextField(errorMassage: "errorMassage", icon: Icons.key, type: TextInputType.streetAddress, controller: passwordController, labeltext: "Password",val: true,),
                           SizedBox(height: 10),
       
@@ -42,7 +43,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                               TextButton(onPressed: (){}, child: Text(" forget password?" ,style: TextStyle(color: maincolor),)),
                             ],
                           ),
-                          SizedBox(height: 60,),
+                          SizedBox(height: 30,),
       
          
                  ElevatedButton(

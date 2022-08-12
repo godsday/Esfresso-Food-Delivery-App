@@ -30,7 +30,7 @@ class ArithemticButtons extends StatelessWidget {
             shape: BoxShape.circle,
             border: Border.all(color: maincolor),
             color: index == true ? Colors.white : maincolor),
-        child: Icon(icons, color: index == true ? maincolor : Colors.white),
+        child: Center(child: Icon(icons, color: index == true ? maincolor : Colors.white)),
       ),
     );
   }
