@@ -1,11 +1,15 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+
+
+// ignore_for_file: prefer_const_constructors
 
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/constants/itemList.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
+import 'package:esfresso/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/home_screen_controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreenView extends GetView<HomeScreenController> {
   HomeScreenView({Key? key}) : super(key: key);
@@ -17,7 +21,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar:AppBar(
        
           toolbarHeight: 90,
           leading: Padding(
@@ -198,7 +202,92 @@ class HomeScreenView extends GetView<HomeScreenController> {
                       },
                     ),
                   ),
-                  Row(
+              
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Popular Items",
+                    style: TextStyle(
+                        color: Color.fromARGB(179, 18, 18, 18),
+                        fontWeight: FontWeight.bold,fontSize: 20),
+                  ),
+                   SizedBox(height: 20.h),
+                  SizedBox(
+                    height: 250.h,
+                    child: ListView.builder(
+                     // physics: ClampingScrollPhysics(),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      // crossAxisCount: 2,
+                      // mainAxisSpacing: 15,
+                      // crossAxisSpacing: 15,
+                      // childAspectRatio: 1,
+                      itemCount:popularList.length,
+                      itemBuilder:(context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.FOOD_ITEM_SCREEN,
+                                arguments: popularList[index]);
+                          },
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                // decoration: BoxDecoration(
+                                //    // color: Colors.amber,
+                                //     borderRadius: BorderRadius.circular(10)),
+                               // height: 20.h,
+                                child:Column(
+                                  //  mainAxisSize: MainAxisSize.max,
+                                  // mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 160,
+                                      height: 190,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(30),
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  popularList[index]['image']),
+                                              fit: BoxFit.fill)
+                                          // color: Colors.amber
+                                          ),
+                                    ),
+                                    
+                                    Text(
+                                      popularList[index]['name'],
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                     Row(
+                                      mainAxisAlignment:MainAxisAlignment.spaceAround,
+                                       children: [
+                                         Icon(Icons.star_rate_sharp,size: 16,color: Colors.yellow.shade900,),
+                                         Text('${popularList[index]['rating']} .',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+                                         SizedBox(width: 10.w,
+                                         ),
+                                      //   Text(".",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
+                                          SizedBox(width: 10.w,
+                                         ),
+                                         Text('${popularList[index]['delivertime']} mins',style:TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)
+                                       ],
+                                     )
+                                  
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 15.w,)
+                            ],
+                          ),
+                        );
+                      }),
+                  ),
+                  SizedBox(height: 20.h,),
+
+                  Divider(thickness: 2,),
+SizedBox(height: 20.h,),
+      Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text("Featured Restaurants",
@@ -210,36 +299,40 @@ class HomeScreenView extends GetView<HomeScreenController> {
                       )
                     ],
                   ),
-                  const SizedBox(height: 5),
+                   SizedBox(height: 15.h),
                   SizedBox(
                     height: 300,
                     child: ListView.builder(
                         ////////////////////////////////////////////rest
+                      //  physics:NeverScrollableScrollPhysics(),
+                       primary: false,
                         shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
+                        scrollDirection: Axis.vertical,
                         itemCount: 3,
                         itemBuilder: (context, index) {
-                          return Row(
+                          return Column(
                             children: [
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(Routes.RESTAURANT_SCREEN);
                                 },
                                 child: Container(
-                                  width: 260,
-                                  height: 420,
+                                  width: 500.w,
+                   
+                                  height: 220,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: Colors.white),
-                                  child: Column(
+                                  child: Row(
+                                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     // mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    // crossAxisAlignment:
+                                    //     CrossAxisAlignment.start,
                                     children: [
                                       Stack(
                                         children: [
                                           Container(
-                                            width: 250,
+                                            width: 150,
                                             height: 200,
                                             decoration: const BoxDecoration(
                                               image: DecorationImage(
@@ -301,146 +394,92 @@ class HomeScreenView extends GetView<HomeScreenController> {
                                               )),
                                         ],
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10, top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const Text(
-                                              "McDonald's",
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10, right: 10, top: 10),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
-                                                SizedBox(
-                                                    height: 20,
-                                                    width: 25,
-                                                    child: Image.asset(
-                                                      'assets/images/bike.png',
-                                                      fit: BoxFit.cover,
-                                                    )),
-                                                const Text("Free delivery"),
-                                                const SizedBox(
-                                                  width: 10,
+                                                const Text(
+                                                  "McDonald's",
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight: FontWeight.bold),
                                                 ),
-                                                SizedBox(
-                                                    height: 20,
-                                                    width: 20,
-                                                    child: Image.asset(
-                                                      'assets/images/timer.png',
-                                                      fit: BoxFit.cover,
-                                                    )),
-                                                const Text("10-20 mins"),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.spaceEvenly,
+                                                  children: [
+                                                    SizedBox(
+                                                        height: 20,
+                                                        width: 25,
+                                                        child: Image.asset(
+                                                          'assets/images/bike.png',
+                                                          fit: BoxFit.cover,
+                                                        )),
+                                                    const Text("Free delivery"),
+                                                    const SizedBox(
+                                                      width: 10,
+                                                    ),
+                                                  
+                                                  ],
+                                                ),
+                                                SizedBox(height: 10.h,),
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.star_rate_rounded,color: Colors.yellow.shade900,),
+                                                    Text("3.0"),
+                                                      SizedBox(
+                                                        height: 20,
+                                                        width: 20,
+                                                        child: Image.asset(
+                                                          'assets/images/timer.png',
+                                                          fit: BoxFit.cover,
+                                                        )),
+                                                    const Text("20 mins"),
+                                                  ],
+                                                ),
+                                                 SizedBox(
+                                                  height: 10.h,
+                                                ),
+                                                Row(
+                                              
+                                                  children: const [
+                                                    MiniContainer(value: "BURGER"),
+                                                    SizedBox(width: 20,),
+                                                    MiniContainer(value: "CHICKEN"),
+                                                    // MiniContainer(
+                                                    //     value: "FAST FOOD"),
+                                                  ],
+                                                ),
+                                                SizedBox(height:10),
+                                                Text("Place . 5.0 km")
                                               ],
                                             ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: const [
-                                                MiniContainer(value: "BURGER"),
-                                                MiniContainer(value: "CHICKEN"),
-                                                MiniContainer(
-                                                    value: "FAST FOOD"),
-                                              ],
-                                            )
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       )
                                     ],
                                   ),
                                 ),
                               ),
                               const SizedBox(
-                                width: 15,
+                                height : 15,
                               )
                             ],
                           );
                         }),
                   ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Popular Items",
-                    style: TextStyle(
-                        color: Color.fromARGB(179, 18, 18, 18),
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  GridView.count(
-                    physics: ClampingScrollPhysics(),
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 15,
-                    crossAxisSpacing: 15,
-                    childAspectRatio: 1,
-                    children: List.generate(popularList.length, (index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Get.toNamed(Routes.FOOD_ITEM_SCREEN,
-                              arguments: popularList[index]);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.amber,
-                              borderRadius: BorderRadius.circular(10)),
-                         // height: 300,
-                          child: Column(
-                            //  mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Stack(
-                                clipBehavior: Clip.none,
-                                children: [
-                                  Container(
-                                    width: 200,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                popularList[index]['image']),
-                                            fit: BoxFit.fill)
-                                        // color: Colors.amber
-                                        ),
-                                  ),
-                                  Container(
-                                    width: 60,
-                                    height: 20,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: Colors.white),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    popularList[index]['name'],
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                   Text("data")
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-                  )
-                ],
+
+
+                ]
               ),
             ),
           ),

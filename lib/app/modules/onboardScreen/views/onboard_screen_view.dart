@@ -1,8 +1,9 @@
-import 'dart:ui';
+
 
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
@@ -22,21 +23,27 @@ class OnboardScreenView extends GetView<OnboardScreenController> {
         children: [
           Container(
             width:width,
-            height: height/1.23,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+            height: 650.h,
+            decoration: const BoxDecoration(
+              borderRadius: const BorderRadius.only(bottomLeft:Radius.circular(30),bottomRight:Radius.circular(30)),
               color: Colors.white
             ),
             child: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 20,),
-                const SizedBox(
+                   SizedBox(height: 20.h,),
+                  SizedBox(
                   // ignore: prefer_const_constructors
-                  child: Text("     Order your \n Delicious food",style: TextStyle(
-                    fontSize: 30,fontWeight: FontWeight.bold,
-                  ),),
+                  child: Text("Order your\nDelicious food",
+                  textAlign: TextAlign.center,
+                  style:
+                  //Theme.of(context).textTheme.headlineSmall!..merge(TextStyle(fontSize: 30))
+                  TextStyle(
+                    fontSize:30.sp,fontWeight: FontWeight.bold,
+                    
+                   ),
+                  ),
                 ),
                 // Container(
                 //   width:300,
@@ -48,15 +55,15 @@ class OnboardScreenView extends GetView<OnboardScreenController> {
                 //   ),
                 //   //R child: Image.asset("assets/images/deliveryman.png",fit: BoxFit.fitWidth,),
                 // )
-                const SizedBox(height: 14.8,),
+                 SizedBox(height: 14.8.h,),
                 SizedBox(
                   width: width,
-                  height: 500,
+                  height: 510.9.h,
                   child: Image.asset("assets/images/deliveryman.png",fit: BoxFit.fill)),
               ]),
             ),
           ),
-          const SizedBox(height: 34,),
+           SizedBox(height: 34.h,),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(50, 50),

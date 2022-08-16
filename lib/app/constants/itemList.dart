@@ -30,8 +30,8 @@ List items = [
 // ];
 
 List popularList = [
-  {'image':'assets/popularList/popular1.png','name':'Chinese Noodles'},
- {'image': 'assets/popularList/popular2.png','name':'Lessi Pizza'},
- {'image': 'assets/popularList/Pizza 3.png','name':'Fried Pizza'},
- {'image': 'assets/popularList/Pizza 4.png','name':'Tasty Pizza'},
+  {'image':'assets/popularList/popular1.png','name':'Chinese Noodles','rating':'3.3','delivertime':'30' },
+ {'image': 'assets/popularList/popular2.png','name':'Lessi Pizza','rating':'5.0','delivertime':'20'},
+ {'image': 'assets/popularList/Pizza 3.png','name':'Fried Pizza','rating':'2.3','delivertime':'40'},
+ {'image': 'assets/popularList/Pizza 4.png','name':'Tasty Pizza','rating':'3.0','delivertime':'10'},
 ];
