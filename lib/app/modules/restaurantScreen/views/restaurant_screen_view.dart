@@ -1,3 +1,4 @@
+import 'package:esfresso/app/constants/itemList.dart';
 import 'package:esfresso/app/widgets/backButtonWidget.dart';
 import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import '../controllers/restaurant_screen_controller.dart';
 
 class RestaurantScreenView extends GetView<RestaurantScreenController> {
   const RestaurantScreenView({Key? key}) : super(key: key);
+  // List<> monthModel;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -119,15 +121,26 @@ class RestaurantScreenView extends GetView<RestaurantScreenController> {
                       topRight: Radius.circular(30))),
                       child: Padding(
                         padding:  EdgeInsets.all(10.0),
-                        child: Column(
+                        child: ListView(
                           children: [
                             TextCustomStyle(textData: "MENU", textSize: 17.0.sp, textWeight: FontWeight.normal,textColor: Colors.grey.shade400,),
                             SizedBox(height: 10.h,),
-                           Row(
-                             children: [
-                               TextCustomStyle(textData:"South Indian", textSize: 26.0.sp, textWeight: FontWeight.bold),
-                             ],
-                           )
+                            ListView.builder(
+          //scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          itemCount: popularList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return _buildPlayerModelList(popularList[index]);
+          },)
+                            // ExpansionTile(title: TextCustomStyle(textData: "recommended", textSize: 20.0, textWeight: FontWeight.bold),
+                            //                            )
+                            
+                          //  Row(
+                          //    children: [
+                          //      TextCustomStyle(textData:"South Indian", textSize: 26.0.sp, textWeight: FontWeight.bold),
+                          //    ],
+                          //  )
                           ],
                         ),
                       ),
@@ -135,6 +148,25 @@ class RestaurantScreenView extends GetView<RestaurantScreenController> {
           )
         ],
       )),
+    );
+  
+}  Widget _buildPlayerModelList(items) {
+  print(items);
+    return Card(
+      child: ExpansionTile(
+        title: Text(
+          'Recommended',
+          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+        ),
+        children: <Widget>[
+          ListTile(
+            title: Text(
+              items['name'],
+              style: TextStyle(fontWeight: FontWeight.w700),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

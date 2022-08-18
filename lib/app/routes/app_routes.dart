@@ -16,6 +16,7 @@ abstract class Routes {
   static const FAVOURITE_SCREEN = _Paths.FAVOURITE_SCREEN;
   static const CART_SCREEN = _Paths.CART_SCREEN;
   static const MAP_SCREEN = _Paths.MAP_SCREEN;
+  static const PROMO_SCREEN = _Paths.PROMO_SCREEN;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const FAVOURITE_SCREEN = '/favourite-screen';
   static const CART_SCREEN = '/cart-screen';
   static const MAP_SCREEN = '/map-screen';
+  static const PROMO_SCREEN = '/promo-screen';
 }

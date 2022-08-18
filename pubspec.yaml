@@ -31,14 +31,15 @@ flutter:
     - assets/images/fooditem.png
     - assets/images/bike.png
     - assets/images/timer.png
-    - assets/itemList/item1.png
-    - assets/itemList/item2.png
-    - assets/itemList/item3.png
-    - assets/itemList/item4.png
-    - assets/itemList/item5.png
-    - assets/popularList/popular1.png
-    - assets/popularList/popular2.png
-    - assets/popularList/Pizza 3.png
-    - assets/popularList/Pizza 4.png
+    - assets/images/itemList/item1.png
+    - assets/images/itemList/item2.png
+    - assets/images/itemList/item3.png
+    - assets/images/itemList/item4.png
+    - assets/images/itemList/item5.png
+    - assets/images/popularList/popular1.png
+    - assets/images/popularList/popular2.png
+    - assets/images/popularList/Pizza 3.png
+    - assets/images/popularList/Pizza 4.png
+    - assets/images/offerimg/offerbg.png
 
   uses-material-design: true

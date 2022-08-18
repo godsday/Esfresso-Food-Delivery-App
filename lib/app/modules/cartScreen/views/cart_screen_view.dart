@@ -1,7 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/modules/foodItemScreen/controllers/food_item_screen_controller.dart';
+import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:esfresso/app/widgets/arithmeticButtons.dart';
 import 'package:esfresso/app/widgets/backButtonWidget.dart';
+import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,18 +22,28 @@ class CartScreenView extends GetView<CartScreenController> {
   Widget build(BuildContext context) {
     //  cartScreenController.checkdata();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        title: const Text('Cart'),
-        centerTitle: true,
-        elevation: 0,
-        leading: BackButtonCust(),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   foregroundColor: Colors.black,
+      //   title: const Text('Cart'),
+      //   centerTitle: true,
+      //   elevation: 0,
+      //   leading: BackButtonCust(),
+      // ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            Padding(
+              padding: const EdgeInsets.only(left:15.0,right: 160),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                BackButtonCust(),
+                TextCustomStyle(textData: "Cart", textSize: 27.0, textWeight: FontWeight.bold)
+
+              ],),
+            ),
             SizedBox(
               height: 150.h,
               child: Row(
@@ -100,7 +114,7 @@ class CartScreenView extends GetView<CartScreenController> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(18.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -110,33 +124,24 @@ class CartScreenView extends GetView<CartScreenController> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30)),
                         hintText: "promo code",
-                        suffix: TextButton(
-                            style:TextButton.styleFrom(
-                              backgroundColor: maincolor,
-                             shape: StadiumBorder(),
-                            fixedSize: Size(80, 35 )
-                            ),
-                            onPressed: () {},
-                            child: Text("data"))
-                        // suffix: Container(
-                        //   width: 010.w,
-                        //   height: 20.h,
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(30),
-                        //     color: maincolor,
-
-                        //   ),
-
-                        // ),
-
-                        //suffixText: "Apply"
+                       
+                      
+                        // suffix: ElevatedButton(
+                        //   style:TextButton.styleFrom(
+                              
+                        //      shape: StadiumBorder(),
+                        //     fixedSize: Size(30, 35 )
+                        //     ),
+                        //   onPressed: (){},child:Text("Apply"))
                         ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
-                          onPressed: () {}, child: Text('Available Promo'))
+                          onPressed: () {
+                            Get.toNamed(Routes.PROMO_SCREEN);
+                          }, child: Text('Available Promo'))
                     ],
                   ),
                   SizedBox(
@@ -175,8 +180,9 @@ class CheckoutList extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(texts),
-        Text(price),
+        TextCustomStyle(textData: texts, textSize: 18.0, textWeight: FontWeight.w800),
+        TextCustomStyle(textData: price, textSize: 18.0, textWeight: FontWeight.w900),
+
       ],
     );
   }

@@ -8,8 +8,6 @@ import '../modules/favouriteScreen/bindings/favourite_screen_binding.dart';
 import '../modules/favouriteScreen/views/favourite_screen_view.dart';
 import '../modules/foodItemScreen/bindings/food_item_screen_binding.dart';
 import '../modules/foodItemScreen/views/food_item_screen_view.dart';
-// import '../modules/home/bindings/home_binding.dart';
-// import '../modules/home/views/home_view.dart';
 import '../modules/homeScreen/bindings/home_screen_binding.dart';
 import '../modules/homeScreen/views/home_screen_view.dart';
 import '../modules/introductionScreen/bindings/introduction_screen_binding.dart';
@@ -20,12 +18,17 @@ import '../modules/mapScreen/bindings/map_screen_binding.dart';
 import '../modules/mapScreen/views/map_screen_view.dart';
 import '../modules/onboardScreen/bindings/onboard_screen_binding.dart';
 import '../modules/onboardScreen/views/onboard_screen_view.dart';
+import '../modules/promo_screen/bindings/promo_screen_binding.dart';
+import '../modules/promo_screen/views/promo_screen_view.dart';
 import '../modules/restaurantScreen/bindings/restaurant_screen_binding.dart';
 import '../modules/restaurantScreen/views/restaurant_screen_view.dart';
 import '../modules/signupScreen/bindings/signup_screen_binding.dart';
 import '../modules/signupScreen/views/signup_screen_view.dart';
 import '../modules/splashscreen/bindings/splashscreen_binding.dart';
 import '../modules/splashscreen/views/splashscreen_view.dart';
+
+// import '../modules/home/bindings/home_binding.dart';
+// import '../modules/home/views/home_view.dart';
 
 part 'app_routes.dart';
 
@@ -97,8 +100,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MAP_SCREEN,
-      page: () =>  MapScreenView(),
+      page: () => MapScreenView(),
       binding: MapScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROMO_SCREEN,
+      page: () => const PromoScreenView(),
+      binding: PromoScreenBinding(),
     ),
   ];
 }
