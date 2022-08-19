@@ -17,7 +17,13 @@ bool selected = true;
   void onClose() {
     super.onClose();
   }
- itemSelectionChange(){
- 
+  
+  int cIndex = 0;
+ itemSelectionChange(index){
+
+  cIndex=index;
+  update();
+
+
  }
 }

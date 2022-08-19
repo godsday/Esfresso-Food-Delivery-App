@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-class SignupScreenController extends GetxController {
-  //TODO: Implement SignupScreenController
+class ConfirmOrderController extends GetxController {
+  //TODO: Implement ConfirmOrderController
 
- 
+  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +19,5 @@ class SignupScreenController extends GetxController {
     super.onClose();
   }
 
-  
+  void increment() => count.value++;
 }

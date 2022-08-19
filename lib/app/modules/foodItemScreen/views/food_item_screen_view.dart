@@ -24,7 +24,7 @@ class FoodItemScreenView extends GetView<FoodItemScreenController> {
             child: Column(
       children: [
         Stack(
-          children: [
+          children: [ 
             Container(
               height: 300,
               decoration: BoxDecoration(

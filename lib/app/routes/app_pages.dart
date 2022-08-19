@@ -4,6 +4,8 @@ import '../modules/addLocationScreen/bindings/add_location_screen_binding.dart';
 import '../modules/addLocationScreen/views/add_location_screen_view.dart';
 import '../modules/cartScreen/bindings/cart_screen_binding.dart';
 import '../modules/cartScreen/views/cart_screen_view.dart';
+import '../modules/confirm_order/bindings/confirm_order_binding.dart';
+import '../modules/confirm_order/views/confirm_order_view.dart';
 import '../modules/favouriteScreen/bindings/favourite_screen_binding.dart';
 import '../modules/favouriteScreen/views/favourite_screen_view.dart';
 import '../modules/foodItemScreen/bindings/food_item_screen_binding.dart';
@@ -105,8 +107,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PROMO_SCREEN,
-      page: () => const PromoScreenView(),
+      page: () => PromoScreenView(),
       binding: PromoScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONFIRM_ORDER,
+      page: () => const ConfirmOrderView(),
+      binding: ConfirmOrderBinding(),
     ),
   ];
 }

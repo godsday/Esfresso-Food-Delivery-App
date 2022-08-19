@@ -160,7 +160,9 @@ class CartScreenView extends GetView<CartScreenController> {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     shape: StadiumBorder(), fixedSize: Size(250, 55)),
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(Routes.CONFIRM_ORDER);
+                },
                 child: Text("CHECKOUT"))
           ],
         ),

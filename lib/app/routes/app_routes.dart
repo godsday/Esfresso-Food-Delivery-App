@@ -17,6 +17,7 @@ abstract class Routes {
   static const CART_SCREEN = _Paths.CART_SCREEN;
   static const MAP_SCREEN = _Paths.MAP_SCREEN;
   static const PROMO_SCREEN = _Paths.PROMO_SCREEN;
+  static const CONFIRM_ORDER = _Paths.CONFIRM_ORDER;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const CART_SCREEN = '/cart-screen';
   static const MAP_SCREEN = '/map-screen';
   static const PROMO_SCREEN = '/promo-screen';
+  static const CONFIRM_ORDER = '/confirm-order';
 }

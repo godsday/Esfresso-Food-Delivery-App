@@ -7,13 +7,16 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.2
+  dio: ^4.0.6
   flutter:
     sdk: flutter
   flutter_screenutil: ^5.5.3+2
   geolocator: ^9.0.1
   get: 4.6.5
+  get_it: ^7.2.0
   google_maps_flutter: ^2.1.10
   hexcolor: 2.0.7
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -41,5 +44,13 @@ flutter:
     - assets/images/popularList/Pizza 3.png
     - assets/images/popularList/Pizza 4.png
     - assets/images/offerimg/offerbg.png
+    - assets/images/offerimg/Frame.png
 
+  fonts:
+    - family: Satisfy
+      fonts:
+        - asset: assets/fonts/Satisfy-Regular.ttf
+    - family: Acme
+      fonts:
+        - asset: assets/fonts/Acme-Regular.ttf
   uses-material-design: true

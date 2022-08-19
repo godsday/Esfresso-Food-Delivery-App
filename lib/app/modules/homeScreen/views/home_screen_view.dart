@@ -17,6 +17,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
   bool selected = false;
   Color activeColor = maincolor;
   Color inActiveColor = Colors.white;
+  final homeCtrlr=HomeScreenController();
 
   @override
   Widget build(BuildContext context) {
@@ -151,54 +152,62 @@ class HomeScreenView extends GetView<HomeScreenController> {
                       itemBuilder: (context, index) {
                         // String data = items[index]['image'];
                         // String nameData = items[index]['itemName'];
-                        return Row(mainAxisSize: MainAxisSize.min, children: [
-                          GestureDetector(
-                            onTap: () {
-                              selected = true;
-                              //print(itemName[index]);
-                              print("Clickedd");
-                              print(index);
-                            },
-                            child: Container(
-                              width: 80,
-                              height: 130,
-                              decoration: BoxDecoration(
-                                color: selected == true
-                                    ? activeColor
-                                    : inActiveColor,
-                                borderRadius: BorderRadius.circular(40),
+                        return GetBuilder<HomeScreenController>(
+                          builder: (controller) {
+                            return Row(mainAxisSize: MainAxisSize.min, children: [
+                              GestureDetector(
+                                onTap: () {
+                                  controller.itemSelectionChange(items[index]['index']);
+
+                                  // selected = true;
+                                  // //print(itemName[index]);
+                                  // print("Clickedd");
+                                  // print(index);
+                                  
+                                },
+                                child: Container(
+                                      width: 80,
+                                      height: 130,
+                                      decoration: BoxDecoration(
+                                        color:controller.cIndex == items[index]['index']
+                                            ? activeColor
+                                            : inActiveColor,
+                                        borderRadius: BorderRadius.circular(40),
+                                      ),
+                                      child: Column(
+                                        //mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          CircleAvatar(
+                                            radius: 33,
+                                            backgroundImage:
+                                                AssetImage(items[index]['image']),
+                                          ),
+                                          Text(items[index]['itemName'],
+                                              style: TextStyle(
+                                                  color: controller.cIndex == items[index]['index']
+                                                      ? inActiveColor
+                                                      : Colors.black,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold)),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          )
+                                        ],
+                                      ),
+                                  
+                                ),
                               ),
-                              child: Column(
-                                //mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 33,
-                                    backgroundImage:
-                                        AssetImage(items[index]['image']),
-                                  ),
-                                  Text(items[index]['itemName'],
-                                      style: TextStyle(
-                                          color: selected == true
-                                              ? inActiveColor
-                                              : Colors.black,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold)),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          )
-                        ]);
+                              const SizedBox(
+                                width: 20,
+                              )
+                            ]);
+                          }
+                        );
                       },
                     ),
                   ),
