@@ -20,6 +20,8 @@ import '../modules/mapScreen/bindings/map_screen_binding.dart';
 import '../modules/mapScreen/views/map_screen_view.dart';
 import '../modules/onboardScreen/bindings/onboard_screen_binding.dart';
 import '../modules/onboardScreen/views/onboard_screen_view.dart';
+import '../modules/otp_screen/bindings/otp_screen_binding.dart';
+import '../modules/otp_screen/views/otp_screen_view.dart';
 import '../modules/promo_screen/bindings/promo_screen_binding.dart';
 import '../modules/promo_screen/views/promo_screen_view.dart';
 import '../modules/restaurantScreen/bindings/restaurant_screen_binding.dart';
@@ -114,6 +116,11 @@ class AppPages {
       name: _Paths.CONFIRM_ORDER,
       page: () => const ConfirmOrderView(),
       binding: ConfirmOrderBinding(),
+    ),
+    GetPage(
+      name: _Paths.OTP_SCREEN,
+      page: () =>  OtpScreenView(),
+      binding: OtpScreenBinding(),
     ),
   ];
 }

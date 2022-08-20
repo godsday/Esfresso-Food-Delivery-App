@@ -1,42 +1,19 @@
 // ignore_for_file: prefer_const_constructors
-
-import 'package:dio/dio.dart';
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
+import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../controllers/signup_screen_controller.dart';
-
 class SignupScreenView extends GetView<SignupScreenController> {
   SignupScreenView({Key? key}) : super(key: key);
   final fullNameController = TextEditingController();
-
   final emailController = TextEditingController();
   final mobileNumberController = TextEditingController();
   final otpController = TextEditingController();
-  var _dio=Dio();
-
-signup(String name, String email,String mobileNumber)async{
+  final signupScreenController = SignupScreenController();
  
-try {
- final  response=await _dio.post("http://192.168.0.27:2000/signup",data: {
-  "Name":name,
-  "Email":email,
-  "MobileNumber":mobileNumber
- }
-  );
-  print(response);
-  return response;
-  
-  
-
-} catch (e) {
-  print(e.toString());
-}
-
-}
   @override
   Widget build(BuildContext context) {
     
@@ -44,27 +21,27 @@ try {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(28.0),
+            padding:  EdgeInsets.all(28.0.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 30),
+                SizedBox(height: 20.h),
 
-                Text(
-                  "Sign up",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 34,
-                      color: maincolor),
-                ),
-                SizedBox(height: 60),
+               TextCustomStyle(textData: "Sign up", textSize: 30.0.sp, textWeight: FontWeight.w900,fontFamily: "Acme",),
+                 SizedBox(height: 15.h),
+
+                SizedBox(height: 230.h,
+                width: 400.w,
+                child: Image.asset('assets/images/signUp.webp',fit:BoxFit.cover,),),
+                      SizedBox(height: 15.h),
+
                 CustomTextField(
                     errorMassage: "errorMassage",
                     icon: Icons.person,
                     type: TextInputType.name,
                     controller: fullNameController,
                     labeltext: "Full Name"),
-                SizedBox(height: 40),
+                SizedBox(height: 30.h),
 
                 CustomTextField(
                     errorMassage: "errorMassage",
@@ -72,23 +49,22 @@ try {
                     type: TextInputType.emailAddress,
                     controller: emailController,
                     labeltext: "Email"),
-                SizedBox(height: 40),
+                SizedBox(height: 30.h),
                 CustomTextField(
                     errorMassage: "errorMassage",
                     icon: Icons.phone_android,
                     type: TextInputType.number,
                     controller: mobileNumberController,
                     labeltext: "Mobile Number"),
-                SizedBox(height: 40),
-                //  CustomTextField(errorMassage: "errorMassage", icon: Icons.key, type: TextInputType.emailAddress, controller: otpController, labeltext: "OTP"),
-                // SizedBox(height: 40),
-
+                SizedBox(height: 40.h),
+              
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        signup(fullNameController.text.toString(),emailController.text.toString(),mobileNumberController.text.toString());
+                      signupScreenController.signup(fullNameController.text.toString(),emailController.text.toString(),mobileNumberController.text.toString());
+                      
                       },
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size(190, 45),
@@ -103,7 +79,7 @@ try {
                   ],
                 ),
                 SizedBox(
-                  height: 30,
+                  height: 25,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

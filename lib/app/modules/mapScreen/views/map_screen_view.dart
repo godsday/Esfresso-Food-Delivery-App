@@ -12,8 +12,8 @@ import '../controllers/map_screen_controller.dart';
 
 class MapScreenView extends GetView<MapScreenController> {
   MapScreenView({Key? key}) : super(key: key);
- // Completer<GoogleMapController> _controller = Completer();
- late GoogleMapController googleMapController;
+  // Completer<GoogleMapController> _controller = Completer();
+  final mapScreenController = MapScreenController();
   static final CameraPosition _initialCameraPosition = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.323,
@@ -58,39 +58,47 @@ class MapScreenView extends GetView<MapScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: GoogleMap(
-          mapType: MapType.normal,
-          zoomControlsEnabled: false,
-          // markers: {
-          //  // _kgoogleplexMarker, _kgoogleWhereMarker
-          //   },
-          // polylines: {
-          //   _kPolyline,
-          // },
-        //  polygons: {_kploygon},
-          initialCameraPosition: _initialCameraPosition,
-          onMapCreated: 
-           (GoogleMapController controller) {
-          //   _controller.complete(controller);
-          googleMapController =controller;
-          },
-        ),
+      body: GetBuilder<MapScreenController>(
+        builder: (controller) {
+          return GoogleMap(
+            mapType: MapType.normal,
+            zoomControlsEnabled:false,
+           // _kgoogleplexMarker, _kgoogleWhereMarker
+            //   },
+            // polylines: {
+            //   _kPolyline,
+            // },
+            //  polygons: {_kploygon},
+            initialCameraPosition: _initialCameraPosition,
+            onMapCreated: (GoogleMapController controller) {
+              //   _controller.complete(controller);
+             mapScreenController.googleMapController = controller;
+            },
+             markers:{
+                 (Marker(
+                markerId: MarkerId('current location'),
+                position: mapScreenController.destination,
+                icon: BitmapDescriptor.defaultMarker,
+              ))
+              }
+           
+          );
+        }
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+       //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
-       // hoverColor: Colors.amber,
+        // hoverColor: Colors.amber,
         onPressed: () async {
-          print('clicked');
-          Position position = await _determinePosition();
-          googleMapController.animateCamera(CameraUpdate.newCameraPosition(
-            CameraPosition(
-                target: LatLng(position.latitude, position.longitude),
-                zoom: 14),
-          ));
-          markers.clear();
-          markers.add(Marker(markerId: MarkerId('current location'),position: LatLng(position.latitude,position.longitude)));
-         // googleMapController.animateCamera(cameraUpdate)
+         mapScreenController.currentLocation();
+          // Position position = await _determinePosition();
+          // googleMapController.animateCamera(CameraUpdate.newCameraPosition(
+          //   CameraPosition(
+          //       target: LatLng(position.latitude, position.longitude),
+          //       zoom: 14),
+          // ));
+         
+
+          // googleMapController.animateCamera(cameraUpdate)
         },
         child: Icon(Icons.location_history),
       ),
@@ -102,29 +110,5 @@ class MapScreenView extends GetView<MapScreenController> {
   //   controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   // }
 
-  Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permisssion;
 
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!serviceEnabled) {
-      return Future.error("location service are desabled");
-    }
-
-    permisssion = await Geolocator.checkPermission();
-    if (permisssion == LocationPermission.denied) {
-      permisssion = await Geolocator.requestPermission();
-      if (permisssion == LocationPermission.denied) {
-        return Future.error("Location permission denied");
-      }
-    }
-
-    if (permisssion == LocationPermission.deniedForever) {
-      return Future.error("Location permission are permanenty denied");
-    }
-
-    Position position = await Geolocator.getCurrentPosition();
-    return position;
-  }
 }

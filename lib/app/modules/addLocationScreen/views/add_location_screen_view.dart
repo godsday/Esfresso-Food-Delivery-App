@@ -1,6 +1,8 @@
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
+import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -12,18 +14,18 @@ class AddLocationScreenView extends GetView<AddLocationScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    backgroundColor: HexColor('#ffefef'),
+    // backgroundColor: HexColor('#ffefef'),
       body: SafeArea(
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const SizedBox(height: 40,),
-               SizedBox(child: Image.asset("assets/images/map.png")),
-              const SizedBox(height: 20,),
-              const Text("Esfresso uses your location \n        to show restaurent",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16)),
-              const SizedBox(height: 20,),
+               SizedBox(height: 40.h,),
+               SizedBox(child: Image.asset("assets/images/mapImg.jpg")),
+               SizedBox(height: 20.h,),
+               TextCustomStyle(textData: "Esfresso Uses Your Location \n   to Sw Nearest Restaurent", textSize: 18.0, textWeight: FontWeight.bold,fontFamily: "Acme",),
+               SizedBox(height: 20.h,),
               ElevatedButton(onPressed: (){
                 Get.toNamed(Routes.MAP_SCREEN);
               },style: ElevatedButton.styleFrom(primary: maincolor,fixedSize: const Size(270, 42)),
@@ -33,7 +35,7 @@ class AddLocationScreenView extends GetView<AddLocationScreenController> {
                 },style: ElevatedButton.styleFrom(primary:HexColor('#ffefef') ,fixedSize: const Size(270, 42),
                 side:BorderSide(color: Colors.blueGrey.shade100)),
                child: const Text("Use Another Location",style:  TextStyle(color: Colors.black),)),
-                              const SizedBox(height: 20,),
+                               SizedBox(height: 20.h,),
 
             ],
           ),

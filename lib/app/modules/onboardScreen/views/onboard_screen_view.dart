@@ -32,7 +32,7 @@ class OnboardScreenView extends GetView<OnboardScreenController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                   SizedBox(height: 20.h,),
+                   SizedBox(height: 50.h,),
                   SizedBox(
                   // ignore: prefer_const_constructors
                   child: Text("Order your\nDelicious food",
@@ -40,7 +40,8 @@ class OnboardScreenView extends GetView<OnboardScreenController> {
                   style:
                   //Theme.of(context).textTheme.headlineSmall!..merge(TextStyle(fontSize: 30))
                   TextStyle(
-                    fontSize:30.sp,fontWeight: FontWeight.bold,
+                    fontFamily: "Acme",
+                    fontSize:38.sp,fontWeight: FontWeight.bold,
                     
                    ),
                   ),
@@ -55,11 +56,11 @@ class OnboardScreenView extends GetView<OnboardScreenController> {
                 //   ),
                 //   //R child: Image.asset("assets/images/deliveryman.png",fit: BoxFit.fitWidth,),
                 // )
-                 SizedBox(height: 14.8.h,),
+                 SizedBox(height: 58.9.h,),
                 SizedBox(
                   width: width,
-                  height: 510.9.h,
-                  child: Image.asset("assets/images/deliveryman.png",fit: BoxFit.fill)),
+                  height: 410.9.h,
+                  child: Image.asset("assets/images/frst.png",fit: BoxFit.fill)),
               ]),
             ),
           ),
