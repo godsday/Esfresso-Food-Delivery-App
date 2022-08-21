@@ -40,7 +40,7 @@ class CartScreenView extends GetView<CartScreenController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                 BackButtonCust(),
-                TextCustomStyle(textData: "Cart", textSize: 27.0, textWeight: FontWeight.bold)
+                TextCustomStyle(textData: "Cart", textSize: 27.0, textWeight: FontWeight.bold,fontFamily: "Acme",)
 
               ],),
             ),
@@ -163,7 +163,7 @@ class CartScreenView extends GetView<CartScreenController> {
                 onPressed: () {
                   Get.toNamed(Routes.CONFIRM_ORDER);
                 },
-                child: Text("CHECKOUT"))
+                child: TextCustomStyle(textData: "CHECKOUT", textSize: 17.0.sp, textWeight: FontWeight.bold,textColor: Colors.white,fontFamily: "Acme",))
           ],
         ),
       ),

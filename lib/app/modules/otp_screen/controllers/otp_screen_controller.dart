@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:esfresso/app/constants/constants.dart';
+import 'package:esfresso/app/routes/app_pages.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OtpScreenController extends GetxController {
@@ -21,19 +24,30 @@ class OtpScreenController extends GetxController {
   }
 final  _dio =Dio();
   verifyOtp(pin)async{
-    
+ final data={
+  "Name":Get.arguments["Name"],
+  "Email":Get.arguments["Email"],
+  "MobileNumber":Get.arguments["MobileNumber"]
+  };
     try{
-var response = await _dio. post("http://172.16.1.205:2000/signup",
+var response = await _dio.post("http://${Constants.baseURL}:2000/submitOtp",
 data: {
-  "OTP":pin,
-  "Name":Get.arguments[];
-
+    "OTP":pin,
+   "data" :data
+   
 }
+
 );
-
-    }catch(e){
-   print(e);
-
+Get.snackbar( "Success","Ready to go",
+  snackPosition: SnackPosition.BOTTOM,);
+ print(response);
+Get.toNamed(Routes.HOME_SCREEN);
+ }
+ catch(e){
+   
+print(e);
     }
-  }
+
+   
+}
 }

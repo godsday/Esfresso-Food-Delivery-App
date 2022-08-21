@@ -12,6 +12,7 @@ import '../controllers/otp_screen_controller.dart';
 class OtpScreenView extends GetView<OtpScreenController> {
   OtpScreenView({Key? key}) : super(key: key);
   OtpFieldController otpController = OtpFieldController();
+  final otpScreenController = OtpScreenController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,20 +51,22 @@ class OtpScreenView extends GetView<OtpScreenController> {
 
                     ),
                     child: OTPTextField(
+                      controller:otpController ,
                           length: 4,
                           width: 500.w,
                           fieldWidth: 60,
                           style: TextStyle(fontSize: 45),
                           textFieldAlignment: MainAxisAlignment.spaceEvenly,
                           fieldStyle: FieldStyle.box,
-                          // onChanged: (pin){
-                          //   print(pin);
-                          // },
-                          onCompleted: (pin) {
-                           print(pin);
+                          onChanged: (pin){
+                            print(pin);
+                          },
+                          onCompleted:(pin) {
+                            otpScreenController.verifyOtp(pin);
                           },
                         ),
-                  )),
+                     ),
+                  ),
                   // IconButton(onPressed: (){
 
                   // }, icon: Icon(Icons.verified_user))
