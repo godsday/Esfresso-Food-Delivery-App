@@ -1,4 +1,5 @@
 import 'package:esfresso/app/constants/constants.dart';
+import 'package:esfresso/app/widgets/backButtonWidget.dart';
 import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,17 +30,24 @@ class OtpScreenView extends GetView<OtpScreenController> {
       // ),
       body: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+           // mainAxisAlignment: MainAxisAlignment.spaceAround,
               
             children: [
-              TextCustomStyle(textData: "Verication Code", textSize: 35.0, textWeight: FontWeight.bold,fontFamily: "Acme",textColor: maincolor,),
-              SizedBox(height: 30,),
-              TextCustomStyle(textData: "Please type the verification code", textSize: 20.0, textWeight: FontWeight.normal),
-              SizedBox(height: 20,),
+              Padding(
+                padding:  EdgeInsets.all(38.0.sp),
+                child: Row(
+                  children: [
+                    BackButtonCust(),
+                   
+                  ],
+                ),
+              ),
+              
+             
               Center(
                 
                   child: Container(
-                    height: 200.h,
+                    height: 400.h,
                     width: 350.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
@@ -50,26 +58,44 @@ class OtpScreenView extends GetView<OtpScreenController> {
                       // ]
 
                     ),
-                    child: OTPTextField(
-                      controller:otpController ,
-                          length: 4,
-                          width: 500.w,
-                          fieldWidth: 60,
-                          style: TextStyle(fontSize: 45),
-                          textFieldAlignment: MainAxisAlignment.spaceEvenly,
-                          fieldStyle: FieldStyle.box,
-                          onChanged: (pin){
-                            print(pin);
-                          },
-                          onCompleted:(pin) {
-                            otpScreenController.verifyOtp(pin);
-                          },
-                        ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+ TextCustomStyle(textData: "Verication Code", textSize: 35.0, textWeight: FontWeight.bold,fontFamily: "Acme",textColor: maincolor,),
+               SizedBox(height: 30.h,),
+              TextCustomStyle(textData: "Please type the verification code\n Here", textSize: 20.0.sp, textWeight: FontWeight.normal,textAlign: TextAlign.center,textColor: Colors.blueGrey,),
+               SizedBox(height:10.h,),
+                        OTPTextField(
+                          controller:otpController ,
+                              length: 4,
+                              width: 500.w,
+                              fieldWidth: 60,
+                              style: const TextStyle(fontSize: 45),
+                              textFieldAlignment: MainAxisAlignment.spaceEvenly,
+                              fieldStyle: FieldStyle.box,
+                              onChanged: (pin){
+                                print(pin);
+                              },
+                              onCompleted:(pin) {
+                                otpScreenController.verifyOtp(pin);
+                              },
+                            ),
+                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                 children: [
+                                  SizedBox(width: 180.w,),
+                                   TextButton(onPressed: (){
+                                    otpScreenController.resendOtp();
+                  }, child: TextCustomStyle(textData: "Resend OTP", textSize: 18.0.sp, textWeight: FontWeight.w400)),
+                                 ],
+                               )
+                      ],
+                    ),
                      ),
                   ),
-                  // IconButton(onPressed: (){
 
-                  // }, icon: Icon(Icons.verified_user))
+               
+                 
             ],
           )),
     );

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
 class TextCustomStyle extends StatelessWidget {
-  final textSize;
-  final textData;
-  final textColor;
-  final textWeight;
-  final fontFamily;
-  TextCustomStyle(
+  final double textSize;
+  final String textData;
+  final Color? textColor;
+  final FontWeight textWeight;
+  final String? fontFamily;
+  final TextAlign? textAlign;
+
+  const TextCustomStyle(
       {Key? key,
       required this.textData,
       required this.textSize,
       required this.textWeight,
       this.textColor,
-      this.fontFamily})
+      this.fontFamily,
+      this.textAlign})
       : super(key: key);
 
   @override
@@ -20,8 +23,9 @@ class TextCustomStyle extends StatelessWidget {
     return Text(
       
       textData,
+      textAlign: textAlign,
       style: TextStyle(
-          fontSize: textSize, fontWeight: textWeight, color: textColor,fontFamily:fontFamily),
+          fontSize: textSize, fontWeight: textWeight, color: textColor,fontFamily:fontFamily,),
     );
   }
 }

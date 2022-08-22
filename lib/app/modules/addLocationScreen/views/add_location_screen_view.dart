@@ -24,6 +24,7 @@ class AddLocationScreenView extends GetView<AddLocationScreenController> {
                SizedBox(height: 40.h,),
                SizedBox(child: Image.asset("assets/images/mapImg.jpg")),
                SizedBox(height: 20.h,),
+               // ignore: prefer_const_constructors
                TextCustomStyle(textData: "Esfresso Uses Your Location \n   to Sw Nearest Restaurent", textSize: 18.0, textWeight: FontWeight.bold,fontFamily: "Acme",),
                SizedBox(height: 20.h,),
               ElevatedButton(onPressed: (){

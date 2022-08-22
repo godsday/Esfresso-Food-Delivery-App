@@ -114,7 +114,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.CONFIRM_ORDER,
-      page: () => const ConfirmOrderView(),
+      page: () =>  ConfirmOrderView(),
       binding: ConfirmOrderBinding(),
     ),
     GetPage(

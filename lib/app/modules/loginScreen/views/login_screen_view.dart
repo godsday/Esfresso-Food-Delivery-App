@@ -4,9 +4,8 @@ import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-
+import '../../../widgets/textfield_custom_widget.dart';
 import '../controllers/login_screen_controller.dart';
 
 class LoginScreenView extends GetView<LoginScreenController> {
@@ -29,32 +28,37 @@ class LoginScreenView extends GetView<LoginScreenController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   //
-                  TextCustomStyle(textData: "Login", textSize: 34.0.sp, textWeight: FontWeight.bold,fontFamily: "Acme",textColor: maincolor,),
-                  
+                  TextCustomStyle(
+                    textData: "Login",
+                    textSize: 34.0.sp,
+                    textWeight: FontWeight.bold,
+                    fontFamily: "Acme",
+                    textColor: maincolor,
+                  ),
                 ],
               ),
-               SizedBox(height: 300.h,width: 500.w,
-              child: Image.asset("assets/images/login.jpg"),),
+              SizedBox(
+                height: 300.h,
+                width: 500.w,
+                child: Image.asset("assets/images/login.jpg"),
+              ),
               SizedBox(height: 30.h),
               CustomTextField(
-                  screen: "login",
-                  errorMassage: "errorMassage",
+                  validator: (value) {},
                   icon: Icons.email,
                   type: TextInputType.emailAddress,
                   controller: emailController,
                   labeltext: "Email"),
-              SizedBox(height: 30),
-             
+              const SizedBox(height: 30),
               CustomTextField(
-                screen: "login",
-                errorMassage: "errorMassage",
+                validator: (value) {},
                 icon: Icons.key,
                 type: TextInputType.streetAddress,
                 controller: passwordController,
                 labeltext: "Password",
                 val: true,
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -66,7 +70,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                       )),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               ElevatedButton(

@@ -38,7 +38,8 @@ class SignupScreenController extends GetxController {
     } on DioError catch (e){
       // if(DioErrorType.response==409)
         // print("object");
-        Get.snackbar("User Already","");
+        print(e);
+        Get.snackbar("User Already","",snackPosition: SnackPosition.BOTTOM);
     }
    
   }

@@ -4,13 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../../../widgets/backButtonWidget.dart';
 import '../../../widgets/custom_text_widget.dart';
 import '../controllers/confirm_order_controller.dart';
 
 class ConfirmOrderView extends GetView<ConfirmOrderController> {
-  const ConfirmOrderView({Key? key}) : super(key: key);
+   ConfirmOrderView({Key? key}) : super(key: key);
+  final _razorpay =Razorpay();
+final  confirmOrderController =Get.put( ConfirmOrderController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,11 +62,11 @@ class ConfirmOrderView extends GetView<ConfirmOrderController> {
                     child: Column(
                       children: [
                      CheckoutList(texts: 'Subtotal', price: '200.0'),
-                    Divider(),
+                    const Divider(),
                     CheckoutList(texts: 'Tax and fees', price: '5.30'),
-                    Divider(),
+                    const Divider(),
                     CheckoutList(texts: 'Delivery charge', price: '40'),
-                    Divider(),
+                    const Divider(),
                     CheckoutList(texts: 'Total', price: '300.0'),
                       ],
                     ),
@@ -77,6 +80,7 @@ class ConfirmOrderView extends GetView<ConfirmOrderController> {
                     ),
                       onPressed: (){
                         print("place order");
+                        confirmOrderController.option();
                       }, child: TextCustomStyle(textData: "Place Your Order", textSize: 20.0.sp, textWeight: FontWeight.bold,textColor: maincolor,fontFamily: "Acme",)),
                   )
                 ],
