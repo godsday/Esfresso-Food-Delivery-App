@@ -74,18 +74,24 @@ class OtpScreenView extends GetView<OtpScreenController> {
                               textFieldAlignment: MainAxisAlignment.spaceEvenly,
                               fieldStyle: FieldStyle.box,
                               onChanged: (pin){
-                                print(pin);
+                               
                               },
                               onCompleted:(pin) {
                                 otpScreenController.verifyOtp(pin);
                               },
+                                    
                             ),
+                            // Obx(() {
+                              
+                            //   return otpController!=""? Text(otpScreenController.error.toString()):Text("");
+                            // }),
                                Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                  children: [
                                   SizedBox(width: 180.w,),
                                    TextButton(onPressed: (){
                                     otpScreenController.resendOtp();
+                                    otpController.clear();
                   }, child: TextCustomStyle(textData: "Resend OTP", textSize: 18.0.sp, textWeight: FontWeight.w400)),
                                  ],
                                )

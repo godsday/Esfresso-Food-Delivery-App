@@ -10,10 +10,9 @@ import '../controllers/signup_screen_controller.dart';
 class SignupScreenView extends GetView<SignupScreenController> {
   SignupScreenView({Key? key}) : super(key: key);
   final fullNameController = TextEditingController();
-  final emailController = TextEditingController();
   final mobileNumberController = TextEditingController();
   final otpController = TextEditingController();
-  final signupScreenController = SignupScreenController();
+  final signupScreenController =Get.put(SignupScreenController());
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -51,6 +50,7 @@ class SignupScreenView extends GetView<SignupScreenController> {
                             if (value == "") {
                               return "Please Enter FullName";
                             }
+                            return null;
                           },
                           icon: Icons.person,
                           type: TextInputType.name,
@@ -59,22 +59,29 @@ class SignupScreenView extends GetView<SignupScreenController> {
                       SizedBox(height: 30.h),
                       CustomTextField(
                         validator: (value) {
-                          bool emailValid = RegExp(
-                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                              .hasMatch(emailController.text);
-                          if (emailValid == false) {
-                            return "Check your Email";
-                          }
+                        // signupScreenController.signUpValidationOfEmail(value);
+                         bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(signupScreenController.emailController.text);
+    if (value == "") {
+      return "Please enter Email";
+    } else if (emailValid == false) {
+      return "Check your Email";
+    }
+    return null;
                         },
                         icon: Icons.email,
                         type: TextInputType.emailAddress,
-                        controller: emailController,
+                        controller:signupScreenController.emailController,
                         labeltext: "Email",
                       ),
                       SizedBox(height: 30.h),
                       CustomTextField(
-                          validator: (value) {
-                            String patttern = r'(^(?:[+0]9)?[0-9]{10}$)';
+                          validator:(value){
+                            
+                          //  signupScreenController.signUpValidationOfNumber(value);
+                          //  return null;
+                             String patttern = r'(^(?:[+0]9)?[0-9]{10}$)';
                             RegExp regExp = RegExp(patttern);
                             if (value == '') {
                               return 'Please enter mobile number';
@@ -96,7 +103,7 @@ class SignupScreenView extends GetView<SignupScreenController> {
                               if (_formkey.currentState!.validate()) {
                                 signupScreenController.signup(
                                     fullNameController.text.toString(),
-                                    emailController.text.toString(),
+                                   signupScreenController.emailController.text.toString(),
                                     mobileNumberController.text.toString());
                               }
                             },

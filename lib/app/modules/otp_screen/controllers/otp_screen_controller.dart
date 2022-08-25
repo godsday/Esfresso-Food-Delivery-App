@@ -1,9 +1,9 @@
-import 'dart:math';
+
 
 import 'package:dio/dio.dart';
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
-import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 class OtpScreenController extends GetxController {
@@ -23,6 +23,8 @@ class OtpScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
+   bool hasError=true;
+  final error ="Invalid OTP".obs; 
  final data = {
       "Name": Get.arguments["Name"],
       "Email": Get.arguments["Email"],
@@ -40,12 +42,13 @@ class OtpScreenController extends GetxController {
         "Ready to go",
         snackPosition: SnackPosition.BOTTOM,
       );
-      print(response);
+      
+      
       Get.toNamed(Routes.HOME_SCREEN);
     }  on DioError catch(e) {
-      print(e.response?.statusCode);
+     
       if(e.response?.statusCode==401){
-        return print("invalid");
+        return Fluttertoast.showToast(msg:"User Already Exist");
       }
     }
   }
@@ -54,10 +57,10 @@ class OtpScreenController extends GetxController {
     try{
      final response =await _dio.post("http://${Constants.baseURL}:2000/resendOtp",
      data:{
-      "MobileNumber":Get.arguments["MobileNumber"]
+      "data":Get.arguments["MobileNumber"]
      }
      );
-     print(response);
+     
     }on DioError catch(e){
       print(e.response?.statusCode);
 
