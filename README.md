@@ -27,4 +27,8 @@
 10.Add items to Wishlist 
 
 
-This App has been developed with 'flutter framework' .This backend used is 'Mongodb'. The datas are fetch from it and displaying in esfresso application. 
+This App has been developed with 'flutter framework'. This backend used is 'Mongodb'. The datas are fetch from it and displaying in esfresso application.This is in a test mode. More updation will come in the upcomming days.
+
+# ThankYou for Your Contributions
+# ThankYou For Your Suggestions
+
