@@ -1,10 +1,10 @@
-## Esfresso-Food Delivery Application.
+# Esfresso-Food Delivery Application.
 
-#FRONTEND - FLUTTER 
+## FRONTEND - FLUTTER 
 
-#BACKEND - MONGODB
+## BACKEND - MONGODB
 
-#USE CASES
+## USE CASES
 
 1.Sign up with Mobile Number,OTP Verification.
 
