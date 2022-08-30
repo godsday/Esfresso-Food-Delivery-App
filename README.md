@@ -1,16 +1,17 @@
-# esfresso
+## Esfresso-Food Delivery Application.
 
-A new Flutter project.
+#FRONTEND - FLUTTER 
+#BACKEND - MONGODB
 
-## Getting Started
+#USE CASES
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1.Sign up with Mobile Number,OTP Verification.
+2.Log in with Email ,OTP Varification.
+3.Location access With Google maps.
+4.Access nearest restaurants.
+5.Add items to cart.
+6.Checkout items.
+7.Apply coupon code.
+8.Payment with Razorpay.
+9.Give Reviews.
+10.Add items to Wishlist 
