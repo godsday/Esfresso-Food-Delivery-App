@@ -20,8 +20,11 @@
 
 7.Apply coupon code.
 
-8.Payment with Razorpay.
+8.Payment gateway with Razorpay.
 
 9.Give Reviews.
 
 10.Add items to Wishlist 
+
+
+This App has been developed with 'flutter framework' .This backend used is 'Mongodb'. The datas are fetch from it and displaying in esfresso application. 
