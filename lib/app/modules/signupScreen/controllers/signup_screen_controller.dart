@@ -1,25 +1,25 @@
-import 'package:dio/dio.dart';
-import 'package:esfresso/app/constants/constants.dart';
-import 'package:esfresso/app/routes/app_pages.dart';
+import 'package:esfresso/app/data/model/signupmodel/signup_model.dart';
+import 'package:esfresso/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignupScreenController extends GetxController {
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  // }
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
+ 
+  final fullNameController = TextEditingController();
+  final mobileNumberController = TextEditingController();
   final emailController = TextEditingController();
+  final formkey = GlobalKey<FormState>();
+  RxBool loading = false.obs;
 
-  final _dio = Dio();
+  signUpFunction(String name, String email, String mobilenumber) {
+    if (formkey.currentState!.validate()) {
+      int number = int.parse(mobilenumber);
+
+      ApiCalling.instance
+          .signup(SignupModel(name: name, email: email, mobilenumber: number));
+    }
+  }
+
   // signUpValidationOfEmail(value) {
   //   bool emailValid = RegExp(
   //           r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -43,24 +43,4 @@ class SignupScreenController extends GetxController {
   //   return null;
   // }
 
-  signup(String name, String email, String mobileNumber) async {
-    try {
-      final response = await _dio.post(
-          "http://${Constants.baseURL}:2000/signup",
-          data: {"Name": name, "Email": email, "MobileNumber": mobileNumber});
-      Get.toNamed(Routes.OTP_SCREEN, arguments: {
-        "Name": name,
-        "Email": email,
-        "MobileNumber": mobileNumber
-      });
-      print(response);
-     
-      return response;
-    } on DioError catch (e) {
-     
-     if(e.response!.statusCode==409){
-      Get.snackbar("User Already", "", snackPosition: SnackPosition.BOTTOM);
-     }
-    }
-  }
 }

@@ -2,68 +2,27 @@
 
 import 'package:dio/dio.dart';
 import 'package:esfresso/app/constants/constants.dart';
-import 'package:esfresso/app/routes/app_pages.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:esfresso/app/data/model/resendotpmodel/resend_otp_model.dart';
+import 'package:esfresso/app/data/model/submitotpmodel/submit_otp_model.dart';
+import 'package:esfresso/app/services/api_services.dart';
 import 'package:get/get.dart';
 
 class OtpScreenController extends GetxController {
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-   bool hasError=true;
-  final error ="Invalid OTP".obs; 
- final data = {
-      "Name": Get.arguments["Name"],
-      "Email": Get.arguments["Email"],
-      "MobileNumber": Get.arguments["MobileNumber"]
+    verifyOtpTo(String pin){
+      int otp = int.parse(pin);
+        final data = {
+      "name": Get.arguments["Name"],
+      "email": Get.arguments["Email"],
+      "mobileNumber": Get.arguments["MobileNumber"]
     };
-  final _dio = Dio();
-  verifyOtp(pin) async {
-   
-    try {
-      var response = await _dio.post(
-          "http://${Constants.baseURL}:2000/submitOtp",
-          data: {"OTP": pin, "data": data});
-      Get.snackbar(
-        "Success",
-        "Ready to go",
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      
-      
-      Get.toNamed(Routes.HOME_SCREEN);
-    }  on DioError catch(e) {
-     
-      if(e.response?.statusCode==401){
-        return Fluttertoast.showToast(msg:"User Already Exist");
-      }
+      ApiCalling.instance.verifyOtp(SubmitOtpModel(otp, data));
     }
-  }
 
-  resendOtp()async{
-    try{
-     final response =await _dio.post("http://${Constants.baseURL}:2000/resendOtp",
-     data:{
-      "data":Get.arguments["MobileNumber"]
-     }
-     );
-     
-    }on DioError catch(e){
-      print(e.response?.statusCode);
-
-    }
-  }
+ 
+resendOtpTo(){
+final int number=  Get.arguments["MobileNumber"];
+    //  }
+ApiCalling.instance.resendOtp(ResendOtpModel(number));
+}
+ 
 }

@@ -9,11 +9,9 @@ import '../controllers/signup_screen_controller.dart';
 
 class SignupScreenView extends GetView<SignupScreenController> {
   SignupScreenView({Key? key}) : super(key: key);
-  final fullNameController = TextEditingController();
-  final mobileNumberController = TextEditingController();
+
   final otpController = TextEditingController();
-  final signupScreenController =Get.put(SignupScreenController());
-  final _formkey = GlobalKey<FormState>();
+  final signupScreenController = Get.put(SignupScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +41,7 @@ class SignupScreenView extends GetView<SignupScreenController> {
                 ),
                 SizedBox(height: 15.h),
                 Form(
-                    key: _formkey,
+                    key: signupScreenController.formkey,
                     child: Column(children: [
                       CustomTextField(
                           validator: (value) {
@@ -54,34 +52,31 @@ class SignupScreenView extends GetView<SignupScreenController> {
                           },
                           icon: Icons.person,
                           type: TextInputType.name,
-                          controller: fullNameController,
+                          controller: signupScreenController.fullNameController,
                           labeltext: "Full Name"),
                       SizedBox(height: 30.h),
                       CustomTextField(
                         validator: (value) {
-                        // signupScreenController.signUpValidationOfEmail(value);
-                         bool emailValid = RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(signupScreenController.emailController.text);
-    if (value == "") {
-      return "Please enter Email";
-    } else if (emailValid == false) {
-      return "Check your Email";
-    }
-    return null;
+                          bool emailValid = RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(
+                                  signupScreenController.emailController.text);
+                          if (value == "") {
+                            return "Please enter Email";
+                          } else if (emailValid == false) {
+                            return "Check your Email";
+                          }
+                          return null;
                         },
                         icon: Icons.email,
                         type: TextInputType.emailAddress,
-                        controller:signupScreenController.emailController,
+                        controller: signupScreenController.emailController,
                         labeltext: "Email",
                       ),
                       SizedBox(height: 30.h),
                       CustomTextField(
-                          validator:(value){
-                            
-                          //  signupScreenController.signUpValidationOfNumber(value);
-                          //  return null;
-                             String patttern = r'(^(?:[+0]9)?[0-9]{10}$)';
+                          validator: (value) {
+                            String patttern = r'(^(?:[+0]9)?[0-9]{10}$)';
                             RegExp regExp = RegExp(patttern);
                             if (value == '') {
                               return 'Please enter mobile number';
@@ -92,33 +87,41 @@ class SignupScreenView extends GetView<SignupScreenController> {
                           },
                           icon: Icons.phone_android,
                           type: TextInputType.number,
-                          controller: mobileNumberController,
+                          controller:
+                              signupScreenController.mobileNumberController,
                           labeltext: "Mobile Number"),
                       SizedBox(height: 40.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              if (_formkey.currentState!.validate()) {
-                                signupScreenController.signup(
-                                    fullNameController.text.toString(),
-                                   signupScreenController.emailController.text.toString(),
-                                    mobileNumberController.text.toString());
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                                fixedSize: const Size(190, 45),
-                                primary: maincolor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30))),
-                            child: const Text(
-                              "SIGN UP",
-                              style: TextStyle(),
-                            ),
-                          ),
-                        ],
-                      ),
+                      Obx(
+                        () => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            signupScreenController.loading.value == true
+                                ? const CircularProgressIndicator()
+                                : ElevatedButton(
+                                    onPressed: () {
+                                      signupScreenController.signUpFunction(
+                                          signupScreenController
+                                              .fullNameController.text
+                                              .toString(),
+                                          signupScreenController
+                                              .emailController.text
+                                              .toString(),
+                                          signupScreenController
+                                              .mobileNumberController.text);
+                                       },
+                                    style: ElevatedButton.styleFrom(
+                                        fixedSize: const Size(190, 45),
+                                        primary: maincolor,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30))),
+                                    child: const Text(
+                                      "SIGN UP",
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      )
                     ])),
                 const SizedBox(
                   height: 25,
@@ -150,4 +153,3 @@ class SignupScreenView extends GetView<SignupScreenController> {
     );
   }
 }
-

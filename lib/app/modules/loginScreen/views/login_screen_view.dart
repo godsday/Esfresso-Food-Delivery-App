@@ -95,21 +95,20 @@ class LoginScreenView extends GetView<LoginScreenController> {
                         ),
                         Obx(() => 
                            Visibility(
-                            visible: !loginScreenController.visbleOTP.value,
+                            visible: loginScreenController.visbleOTP.value,
                               child: Column(
                           
                             children: [
-                              Padding(
-                                padding:  EdgeInsets.only(right:118.0.w,top: 30.h),
-                                child: TextCustomStyle(
-                                  
-                                  textAlign: TextAlign.start,
-                                  textData: "Enter Your OTP",
-                                  textSize: 17.0.sp,
-                                  textWeight: FontWeight.w400,
-                                  textColor: maincolor,
-                                  
-                                ),
+                              SizedBox(height:30.h),
+                              TextCustomStyle(
+                                
+                                textAlign: TextAlign.start,
+                                textData: "Enter Code here ",
+                                textSize: 17.0.sp,
+                                textWeight: FontWeight.w400,
+                                textColor: maincolor,
+                                fontFamily: "Acme",
+                                
                               ),
                               SizedBox(
                                 height: 100.h,
@@ -121,11 +120,15 @@ class LoginScreenView extends GetView<LoginScreenController> {
                                   textFieldAlignment: MainAxisAlignment.spaceAround,
                                   controller: _otpController,
                                   length: 4,
+                                  onChanged: (pin){
+                                    print(pin);
+                                  },
                                   onCompleted: (pin){
                                     loginScreenController.verifyLoginOtp(pin,loginScreenController.emailMobileController.text);
                                   },
                                 ),
                               ),
+                            
                             ],
                           )),
                         ),
@@ -138,12 +141,11 @@ class LoginScreenView extends GetView<LoginScreenController> {
                             child: ElevatedButton(
                               onPressed: () {
                                 if (_formkey.currentState!.validate()) {
-                                  loginScreenController.login(
+                                 
                                       loginScreenController.login(loginScreenController
                                           .emailMobileController.text
-                                          .toString()));
-                                  print("clicked");
-                                  // loginScreenController(loginScreenController.emailMobileController.text.toString());
+                                          .toString());
+                                  print("clickedSend otp");
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -151,7 +153,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                                   primary: maincolor,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30))),
-                              child:  TextCustomStyle(textData: "SEND OTP", textSize: 16.0.sp, textWeight: FontWeight.normal),
+                              child:  TextCustomStyle(textData: "SEND OTP", textSize: 16.0.sp, textWeight: FontWeight.normal,fontFamily: "Acme",),
                               
                             ),
                           ),
@@ -162,13 +164,41 @@ class LoginScreenView extends GetView<LoginScreenController> {
               SizedBox(
                 height: 30.h,
               ),
+                Visibility(
+                  visible:loginScreenController.visbleOTP.value,
+                  child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Wrap(children: [
+                   
+                                    TextCustomStyle(textData: "Didn't receive code?", textSize: 14.0.sp, textWeight: FontWeight.w400,fontFamily: "Acme",),
+                      GestureDetector(
+                          onTap: () {
+                              if (_formkey.currentState!.validate()) {
+                                    
+                                        loginScreenController.login(loginScreenController
+                                            .emailMobileController.text
+                                            .toString());
+                                    print("resend");
+                                  }
+                          },
+                          child: Text(" Resend Code",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  color: maincolor)))
+                    ]),
+                  ],
+                              ),
+                ), SizedBox(
+                height: 10.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Wrap(children: [
-                    const Text("Don't have an account?",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 12)),
+                  
+                             TextCustomStyle(textData: "Don't have an account?", textSize: 14.0.sp, textWeight: FontWeight.bold,fontFamily: "Acme",),
                     GestureDetector(
                         onTap: () {
                           Get.toNamed(Routes.SIGNUP_SCREEN);

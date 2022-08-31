@@ -1,3 +1,5 @@
+
+
 import 'package:dio/dio.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -64,10 +66,10 @@ class LoginScreenController extends GetxController {
       if (checkData.value == true) {
         var response = await _dio.post(
             "http://${Constants.baseURL}:2000/sendEmailOtp",
-            data: {"email":emailormobile});
+            data: {"email": emailormobile});
         if (response.statusCode == 200) {
           visbleOTP.value = true;
-          visbleButton.value= false;
+          visbleButton.value = false;
         }
       } else {
         var response = await _dio.post(
@@ -75,8 +77,7 @@ class LoginScreenController extends GetxController {
             data: {"mobileNumber": emailormobile});
         if (response.statusCode == 200) {
           visbleOTP.value = true;
-       visbleButton.value= false;
-
+          visbleButton.value = false;
         }
       }
     } on DioError catch (e) {
@@ -84,21 +85,29 @@ class LoginScreenController extends GetxController {
     }
   }
 
-  verifyLoginOtp(pin,mobilenumber)async{
+  verifyLoginOtp(pin, emailOrmobilenumber) async {
     try {
-      var response =await _dio.post("http://${Constants.baseURL}:2000/submitLoginOtp",
-      data: {
-        "data":mobilenumber,
-        "OTP":pin
+      if (checkData.value == true) {
+        var response = await _dio.post(
+            "http://${Constants.baseURL}:2000/submitEmailOtp",
+            data: {"otp": pin, "email": emailOrmobilenumber});
+             Get.toNamed(Routes.HOME_SCREEN);
+      } else {
+        var response = await _dio.post(
+            "http://${Constants.baseURL}:2000/submitLoginOtp",
+            data: {"data": emailOrmobilenumber, "OTP": pin});
+        Get.toNamed(Routes.HOME_SCREEN);
       }
-           );
-Get.toNamed(Routes.HOME_SCREEN);
-           
     } on DioError catch (e) {
-     if(e.response!.statusCode==401){
-      return Fluttertoast.showToast(msg: "check otp");
-     }
-      
+      print(e.toString());
+      if (e.response!.statusCode == 401) {
+        return Fluttertoast.showToast(msg: "Check Code");
+      }else if(e.response!.statusCode == 401){
+        return Fluttertoast.showToast(msg: "Code expired");
+
+      }else{
+        return Fluttertoast.showToast(msg: "Something Wrong");
+      }
     }
   }
 }
