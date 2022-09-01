@@ -3,30 +3,28 @@ import 'package:esfresso/app/modules/signupScreen/controllers/signup_screen_cont
 import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
-
 import '../controllers/otp_screen_controller.dart';
 
 class OtpScreenView extends GetView<OtpScreenController> {
   OtpScreenView({Key? key}) : super(key: key);
   OtpFieldController otpController = OtpFieldController();
   final otpScreenController = OtpScreenController();
-  final signupController =Get.put( SignupScreenController());
+  final signupController = Get.put(SignupScreenController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-           
-            SizedBox(height: 50.h,),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 50.h,
+            ),
             Center(
               child: Container(
                 height: 400.h,
@@ -66,7 +64,6 @@ class OtpScreenView extends GetView<OtpScreenController> {
                         otpScreenController.verifyOtpTo(pin);
                       },
                     ),
-                 
                   ],
                 ),
               ),
@@ -90,8 +87,7 @@ class OtpScreenView extends GetView<OtpScreenController> {
                           otpController.clear();
                         },
                         child: TextCustomStyle(
-                            fontFamily:"Acme",
-
+                            fontFamily: "Acme",
                             textData: "Resend code",
                             textSize: 18.0.sp,
                             textWeight: FontWeight.w400)),
@@ -106,13 +102,11 @@ class OtpScreenView extends GetView<OtpScreenController> {
                         textWeight: FontWeight.w400),
                     TextButton(
                         onPressed: () {
-                          signupController.loading.value=false;
+                          signupController.loading.value = false;
                           Get.back();
-                          
                         },
                         child: TextCustomStyle(
-                      fontFamily: "Acme",
-
+                            fontFamily: "Acme",
                             textData: "Change number",
                             textSize: 18.0.sp,
                             textWeight: FontWeight.w400)),
@@ -120,9 +114,9 @@ class OtpScreenView extends GetView<OtpScreenController> {
                 )
               ],
             )
-                  ],
-                ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 }

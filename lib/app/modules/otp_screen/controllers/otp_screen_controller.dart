@@ -1,11 +1,11 @@
 
 
-import 'package:dio/dio.dart';
-import 'package:esfresso/app/constants/constants.dart';
+
 import 'package:esfresso/app/data/model/resendotpmodel/resend_otp_model.dart';
-import 'package:esfresso/app/data/model/submitotpmodel/submit_otp_model.dart';
 import 'package:esfresso/app/services/api_services.dart';
 import 'package:get/get.dart';
+
+import '../../../data/model/signupSubmitOtpModel/submit_otp_model.dart';
 
 class OtpScreenController extends GetxController {
     verifyOtpTo(String pin){
@@ -21,7 +21,7 @@ class OtpScreenController extends GetxController {
  
 resendOtpTo(){
 final int number=  Get.arguments["MobileNumber"];
-    //  }
+    
 ApiCalling.instance.resendOtp(ResendOtpModel(number));
 }
  

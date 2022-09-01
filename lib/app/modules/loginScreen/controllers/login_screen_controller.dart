@@ -1,7 +1,10 @@
 
 
 import 'package:dio/dio.dart';
+import 'package:esfresso/app/data/model/loginVerificationModel/login_otpverfication_model.dart';
+import 'package:esfresso/app/data/model/loginmodel/login_model.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
+import 'package:esfresso/app/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -9,18 +12,8 @@ import 'package:get/get.dart';
 import '../../../constants/constants.dart';
 
 class LoginScreenController extends GetxController {
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  // }
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
+   final formkey = GlobalKey<FormState>();
+
   final _dio = Dio();
   RxBool checkData = true.obs;
   final emailMobileController = TextEditingController();
@@ -33,11 +26,44 @@ class LoginScreenController extends GetxController {
         checkData.value = false;
       }
     } catch (e) {
+      print("object");
       print(e);
     }
   }
 
-  // loginTextFieldValidation(value) {
+  
+  RxBool visbleOTP = false.obs;
+  RxBool visbleButton = true.obs;
+
+ loginTo(emailormobile){
+     print(emailormobile);
+
+     if (formkey.currentState!.validate()) {
+     
+       int number = int.parse(emailormobile);
+      print(number);
+  ApiCalling.instance.login(LoginEmailModel(emailormobile),LoginMobileModel(number));
+      }
+ }
+ 
+
+
+verifyLoginOtpto(String pin ,String emailormob){
+  int number = int.parse(emailormob);
+  int otp = int.parse(pin);
+
+ApiCalling.instance.verifyLoginOtp(LoginVerificationEmailModel(emailormob,otp),LoginVerifivactionMobModel(number, otp)); 
+}
+
+
+
+
+
+
+
+  
+}
+// loginTextFieldValidation(value) {
   //   if (checkData.value == true) {
   //     bool emailValid = RegExp(
   //             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -58,56 +84,3 @@ class LoginScreenController extends GetxController {
   //     }
   //   }
   // }
-  RxBool visbleOTP = false.obs;
-  RxBool visbleButton = true.obs;
-
-  login(emailormobile) async {
-    try {
-      if (checkData.value == true) {
-        var response = await _dio.post(
-            "http://${Constants.baseURL}:2000/sendEmailOtp",
-            data: {"email": emailormobile});
-        if (response.statusCode == 200) {
-          visbleOTP.value = true;
-          visbleButton.value = false;
-        }
-      } else {
-        var response = await _dio.post(
-            "http://${Constants.baseURL}:2000/loginMobile",
-            data: {"mobileNumber": emailormobile});
-        if (response.statusCode == 200) {
-          visbleOTP.value = true;
-          visbleButton.value = false;
-        }
-      }
-    } on DioError catch (e) {
-      print(e.response);
-    }
-  }
-
-  verifyLoginOtp(pin, emailOrmobilenumber) async {
-    try {
-      if (checkData.value == true) {
-        var response = await _dio.post(
-            "http://${Constants.baseURL}:2000/submitEmailOtp",
-            data: {"otp": pin, "email": emailOrmobilenumber});
-             Get.toNamed(Routes.HOME_SCREEN);
-      } else {
-        var response = await _dio.post(
-            "http://${Constants.baseURL}:2000/submitLoginOtp",
-            data: {"data": emailOrmobilenumber, "OTP": pin});
-        Get.toNamed(Routes.HOME_SCREEN);
-      }
-    } on DioError catch (e) {
-      print(e.toString());
-      if (e.response!.statusCode == 401) {
-        return Fluttertoast.showToast(msg: "Check Code");
-      }else if(e.response!.statusCode == 401){
-        return Fluttertoast.showToast(msg: "Code expired");
-
-      }else{
-        return Fluttertoast.showToast(msg: "Something Wrong");
-      }
-    }
-  }
-}
