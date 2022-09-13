@@ -14,15 +14,17 @@ import '../../../constants/constants.dart';
 class LoginScreenController extends GetxController {
    final formkey = GlobalKey<FormState>();
 
-  final _dio = Dio();
+
   RxBool checkData = true.obs;
   final emailMobileController = TextEditingController();
 
   checkEmailOrNumber(value) {
     try {
       if (int.tryParse(value) == null) {
+        // print(int.tryParse(value));
         checkData.value = true;
       } else {
+        // print('number $value');
         checkData.value = false;
       }
     } catch (e) {
@@ -36,33 +38,35 @@ class LoginScreenController extends GetxController {
   RxBool visbleButton = true.obs;
 
  loginTo(emailormobile){
-     print(emailormobile);
-
-     if (formkey.currentState!.validate()) {
-     
-       int number = int.parse(emailormobile);
-      print(number);
+  int number =0;
+  if(checkData.value==false){
+   number = int.parse(emailormobile.toString()); 
+  }
   ApiCalling.instance.login(LoginEmailModel(emailormobile),LoginMobileModel(number));
-      }
  }
+ 
  
 
 
 verifyLoginOtpto(String pin ,String emailormob){
-  int number = int.parse(emailormob);
+  
+  int numberOtp=0;
+  if(checkData.value==false){
+   numberOtp = int.parse(emailormob);
+  }
   int otp = int.parse(pin);
 
-ApiCalling.instance.verifyLoginOtp(LoginVerificationEmailModel(emailormob,otp),LoginVerifivactionMobModel(number, otp)); 
+ApiCalling.instance.verifyLoginOtp(LoginVerificationEmailModel(emailormob,otp),LoginVerifivactionMobModel(numberOtp, otp)); 
 }
 
 
-
+}
 
 
 
 
   
-}
+
 // loginTextFieldValidation(value) {
   //   if (checkData.value == true) {
   //     bool emailValid = RegExp(

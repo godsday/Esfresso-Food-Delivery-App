@@ -60,7 +60,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                             } else if (emailValid == false) {
                               return "Check your Email";
                             }
-                            return null;
+                           return null;
                           } else {
                             String patttern = r'(^(?:[+0]9)?[0-9]{10}$)';
                             RegExp regExp = RegExp(patttern);
@@ -71,10 +71,12 @@ class LoginScreenView extends GetView<LoginScreenController> {
                             }
                           }
                           return null;
+                         
                         },
                         onChanged: (value) {
+                          
                           loginScreenController.checkEmailOrNumber(value);
-                          print(loginScreenController.checkData.value);
+                         
                         },
                         icon: loginScreenController.checkData.isTrue
                             ? Icons.email
@@ -114,6 +116,7 @@ class LoginScreenView extends GetView<LoginScreenController> {
                                     print(pin);
                                   },
                                   onCompleted: (pin) {
+                                    
                                     loginScreenController.verifyLoginOtpto(
                                         pin,
                                         loginScreenController
@@ -132,9 +135,14 @@ class LoginScreenView extends GetView<LoginScreenController> {
                         visible: loginScreenController.visbleButton.value,
                         child: ElevatedButton(
                           onPressed: () {
-                            loginScreenController.loginTo(loginScreenController
-                                .emailMobileController.text
+                            /////////////////////////////
+                             if (loginScreenController.formkey.currentState!.validate()) {
+                            loginScreenController.loginTo(
+                              
+                              loginScreenController
+                                .emailMobileController.text.toString()
                                 );
+                             }
                           },
                           style: ElevatedButton.styleFrom(
                               fixedSize: const Size(190, 45),

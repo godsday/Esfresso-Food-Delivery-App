@@ -5,7 +5,7 @@
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/constants/itemList.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
-import 'package:esfresso/main.dart';
+import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/home_screen_controller.dart';
@@ -52,13 +52,11 @@ class HomeScreenView extends GetView<HomeScreenController> {
           // title: Title(color: Colors.black26, child: Wrap(children:[ Text("Deliver to "),Icon(Icons.keyboard_arrow_down)])),
           title: Wrap(
            crossAxisAlignment: WrapCrossAlignment.center,
-            //alignment:WrapAlignment.center,
+       
             runAlignment: WrapAlignment.center,
             children: [
-              const Text(
-                "Deliver to\n Beach Road Calicut",
-                style: TextStyle(color: Colors.blueGrey, fontSize: 15),
-              ),
+               TextCustomStyle(textData: "Deliver to\n Beach Road Calicut", textSize: 16.0.sp, textWeight: FontWeight.w400,textColor: Colors.blueGrey,textAlign: TextAlign.center,),
+
               const Icon(
                 Icons.keyboard_arrow_down,
                 color: Colors.blueGrey,
@@ -223,7 +221,7 @@ class HomeScreenView extends GetView<HomeScreenController> {
                   SizedBox(
                     height: 250.h,
                     child: ListView.builder(
-                     // physics: ClampingScrollPhysics(),
+                      physics: ClampingScrollPhysics(),
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       // crossAxisCount: 2,
@@ -313,7 +311,7 @@ SizedBox(height: 20.h,),
                     height: 300,
                     child: ListView.builder(
                         ////////////////////////////////////////////rest
-                      //  physics:NeverScrollableScrollPhysics(),
+                        physics:NeverScrollableScrollPhysics(),
                        primary: false,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,

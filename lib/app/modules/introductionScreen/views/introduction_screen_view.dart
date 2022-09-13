@@ -1,6 +1,8 @@
 import 'package:esfresso/app/constants/constants.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
+import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
@@ -36,37 +38,33 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
                  
               ),
             ),
-              const Positioned(
-                        top: 131,
-                        child: Text(
-                          "Your favouraite foods delivered \n              fast at your door.",
-                          style:  TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
-                        )),
                Positioned(
-                        right: 30,
-                        top: 40,
+                        top: 131.h,
+                        child: TextCustomStyle(textData: "Your favouraite foods delivered \n  fast at your door.", textSize: 18.0.sp, textWeight: FontWeight.bold,textAlign: TextAlign.center,textColor: Colors.white,)
+                      
+                        ),
+               Positioned(
+                        right: 30.w,
+                        top: 40.h,
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.offNamed(Routes.HOME_SCREEN);
+                            Get.offNamed(Routes.SIGNUP_SCREEN);
                           },
                          
                           style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(10, 1),
+                              fixedSize: Size(85.h, 1.w),
                               primary: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30))),
-                                   child: const Text(
-                            "Skip",
-                            style:  TextStyle(color: Colors.black),
-                          ),
+                                   child: TextCustomStyle(textData: "Sign Up", textSize: 15.0.sp, textWeight: FontWeight.bold,fontFamily: "Acme",textColor: maincolor,)
                         )),
-                          const Positioned(
-                      bottom: -189,
+                           Positioned(
+                      bottom: -189.h,
                       child: Image(
-                        height: 400,
-                        width: 300,
+                        height: 400.h,
+                        width: 300.w,
                         image:
-                       AssetImage("assets/images/pizza.png") ,
+                     const  AssetImage("assets/images/pizza.png") ,
                         fit: BoxFit.cover,
                       ),
                     )
@@ -74,15 +72,15 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
             ],
           
           ),
-          SizedBox(height: 120,),
+          SizedBox(height: 120.h,),
       
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-               SizedBox(width: 30,),
+               SizedBox(width: 30.w,),
               Container(
-                width: 80,
-                height: 2,
+                width: 80.w,
+                height: 2.h,
                 color: Colors.black,
               ),
               const Text("Sign up with",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
@@ -91,18 +89,18 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
                 height: 2,
                 color: Colors.black,
               ),
-               SizedBox(width: 30,),
+               SizedBox(width: 30.w,),
             ],
           ),
-          SizedBox(height: 30,),
+          SizedBox(height: 30.h,),
           ElevatedButton(
                           onPressed: () {},
                          
                           style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(140, 45),
+                              fixedSize:  Size(140.h, 45.w),
                               primary: Colors.white,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30))),
+                                  borderRadius: BorderRadius.circular(30.sp))),
                                    child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                      children: [
@@ -115,24 +113,26 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
                                    ),
                          
                         ),
-                        SizedBox(height: 30,),
+                        SizedBox(height: 30.h,),
                          ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(Routes.SIGNUP_SCREEN);
+                            Get.toNamed(Routes.HOME_SCREEN);
                           },
                          
                           style: ElevatedButton.styleFrom(
-                              fixedSize: const Size(290, 55),
+                              fixedSize:  Size(290.w, 55.h),
                               primary: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30))),
-                                   child: const Text(
-                            "Start with email or phone",
-                            style:  TextStyle(color: Colors.black),
-                          ),
+                                   child: TextCustomStyle(textData: "Get Started", textSize: 24.0.sp, textWeight: FontWeight.bold,textColor: blackColor,)
                         ),
-                        SizedBox(height: 30,),
-                         Wrap(children:[ Text("Already have an account?",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 13)),GestureDetector(child: Text(" Sign in",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14)))])
+                        SizedBox(height: 30.h,),
+                         Wrap(children:[ Text("Already have an account?",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 13)),
+                         GestureDetector(
+                          onTap: (){
+                            Get.toNamed(Routes.LOGIN_SCREEN);
+                          },
+                          child: TextCustomStyle(textData: "Sign In", textSize: 15.0.sp, textWeight: FontWeight.bold,textColor: maincolor,fontFamily: "Acme",))])
         ],
       ),
     );

@@ -15,7 +15,9 @@ abstract class ApiServices {
   Future signup(SignupModel user);
   Future verifyOtp(SubmitOtpModel submit);
   Future resendOtp(ResendOtpModel resend);
-  Future login(LoginEmailModel email, LoginMobileModel mobile);
+  Future login(LoginEmailModel? email, LoginMobileModel? mobile);
+   verifyLoginOtp(LoginVerificationEmailModel loginEmail,
+      LoginVerifivactionMobModel loginMob);
 }
 
 class ApiCalling implements ApiServices {
@@ -82,15 +84,15 @@ class ApiCalling implements ApiServices {
   }
 
   @override
-  Future login(LoginEmailModel email, LoginMobileModel mobile) async {
+  Future login(LoginEmailModel? email, LoginMobileModel? mobile) async {
     final loginController = Get.put(LoginScreenController());
 
     try {
       if (loginController.checkData.value == true) {
         var response = await _dio.post(
             "http://${Constants.baseURL}:2000/send-emailotp",
-            data: email.toJson());
-        // {"email": emailormobile});
+            data: email?.toJson());
+        print(response.statusCode);
         if (response.statusCode == 200) {
           loginController.visbleOTP.value = true;
           loginController.visbleButton.value = false;
@@ -98,7 +100,7 @@ class ApiCalling implements ApiServices {
       } else {
         var response = await _dio.post(
             "http://${Constants.baseURL}:2000/login-mobile",
-            data: mobile.toJson()
+            data: mobile?.toJson()
             // {"mobileNumber": emailormobile}
             );
         if (response.statusCode == 200) {
@@ -114,6 +116,7 @@ class ApiCalling implements ApiServices {
   }
 
 //Login otp verification with mobile and email
+  @override
   verifyLoginOtp(LoginVerificationEmailModel loginEmail,
       LoginVerifivactionMobModel loginMob) async {
     final loginController = Get.put(LoginScreenController());
@@ -123,7 +126,7 @@ class ApiCalling implements ApiServices {
         var response = await _dio.post(
             "http://${Constants.baseURL}:2000/submit-emailotp",
             data: loginEmail.toJson());
-
+       
         if (response.statusCode == 200) {
           Get.toNamed(Routes.HOME_SCREEN);
         }
@@ -144,7 +147,7 @@ class ApiCalling implements ApiServices {
       } else if (e.response!.statusCode == 401) {
         return Fluttertoast.showToast(msg: "Code expired");
       } else {
-        return Fluttertoast.showToast(msg: "Something Wrong");
+        return Fluttertoast.showToast(msg: "Wrong code");
       }
     }
   }
