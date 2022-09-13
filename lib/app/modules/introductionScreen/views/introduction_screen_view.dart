@@ -20,119 +20,145 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
         children: [
           Stack(
             alignment: Alignment.center,
-              clipBehavior: Clip.none,
-            children:[ ClipPath(
-              clipper: CurveClipper(),
-              child: Container(
-                width: width,
-                height: height/2,
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(70.0),
-                        bottomRight: Radius.circular(35.0)),
-                    color: maincolor),
-                
-                 
-                  
-                  
-                 
+            clipBehavior: Clip.none,
+            children: [
+              ClipPath(
+                clipper: CurveClipper(),
+                child: Container(
+                  width: width,
+                  height: height / 2,
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(70.0),
+                          bottomRight: Radius.circular(35.0)),
+                      color: maincolor),
+                ),
               ),
-            ),
-               Positioned(
-                        top: 131.h,
-                        child: TextCustomStyle(textData: "Your favouraite foods delivered \n  fast at your door.", textSize: 18.0.sp, textWeight: FontWeight.bold,textAlign: TextAlign.center,textColor: Colors.white,)
-                      
-                        ),
-               Positioned(
-                        right: 30.w,
-                        top: 40.h,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Get.offNamed(Routes.SIGNUP_SCREEN);
-                          },
-                         
-                          style: ElevatedButton.styleFrom(
-                              fixedSize: Size(85.h, 1.w),
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30))),
-                                   child: TextCustomStyle(textData: "Sign Up", textSize: 15.0.sp, textWeight: FontWeight.bold,fontFamily: "Acme",textColor: maincolor,)
-                        )),
-                           Positioned(
-                      bottom: -189.h,
-                      child: Image(
-                        height: 400.h,
-                        width: 300.w,
-                        image:
-                     const  AssetImage("assets/images/pizza.png") ,
-                        fit: BoxFit.cover,
-                      ),
-                    )
-            
+              Positioned(
+                  top: 131.h,
+                  child: TextCustomStyle(
+                    textData:
+                        "Your favouraite foods delivered \n  fast at your door.",
+                    textSize: 18.0.sp,
+                    textWeight: FontWeight.bold,
+                    textAlign: TextAlign.center,
+                    textColor: Colors.white,
+                  )),
+              Positioned(
+                  right: 30.w,
+                  top: 40.h,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Get.offNamed(Routes.SIGNUP_SCREEN);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: Size(85.h, 1.w),
+                          primary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30))),
+                      child: TextCustomStyle(
+                        textData: "Sign Up",
+                        textSize: 15.0.sp,
+                        textWeight: FontWeight.bold,
+                        fontFamily: "Acme",
+                        textColor: maincolor,
+                      ))),
+              Positioned(
+                bottom: -189.h,
+                child: Image(
+                  height: 400.h,
+                  width: 300.w,
+                  image: const AssetImage("assets/images/pizza.png"),
+                  fit: BoxFit.cover,
+                ),
+              )
             ],
-          
           ),
-          SizedBox(height: 120.h,),
-      
+          SizedBox(
+            height: 120.h,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-               SizedBox(width: 30.w,),
+              SizedBox(
+                width: 30.w,
+              ),
               Container(
                 width: 80.w,
                 height: 2.h,
                 color: Colors.black,
               ),
-              const Text("Sign up with",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
-                 Container(
+              const Text(
+                "Sign up with",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+              ),
+              Container(
                 width: 80,
                 height: 2,
                 color: Colors.black,
               ),
-               SizedBox(width: 30.w,),
+              SizedBox(
+                width: 30.w,
+              ),
             ],
           ),
-          SizedBox(height: 30.h,),
+          SizedBox(
+            height: 30.h,
+          ),
           ElevatedButton(
-                          onPressed: () {},
-                         
-                          style: ElevatedButton.styleFrom(
-                              fixedSize:  Size(140.h, 45.w),
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.sp))),
-                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                     children: [
-                                      Image.asset(width:30,height:25,"assets/images/google.png"),
-                                       const Text(
-                            "Google",
-                            style:  TextStyle(color: Colors.black),
-                          ),
-                                     ],
-                                   ),
-                         
-                        ),
-                        SizedBox(height: 30.h,),
-                         ElevatedButton(
-                          onPressed: () {
-                            Get.toNamed(Routes.HOME_SCREEN);
-                          },
-                         
-                          style: ElevatedButton.styleFrom(
-                              fixedSize:  Size(290.w, 55.h),
-                              primary: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30))),
-                                   child: TextCustomStyle(textData: "Get Started", textSize: 24.0.sp, textWeight: FontWeight.bold,textColor: blackColor,)
-                        ),
-                        SizedBox(height: 30.h,),
-                         Wrap(children:[ Text("Already have an account?",style:  TextStyle(fontWeight: FontWeight.bold,fontSize: 13)),
-                         GestureDetector(
-                          onTap: (){
-                            Get.toNamed(Routes.LOGIN_SCREEN);
-                          },
-                          child: TextCustomStyle(textData: "Sign In", textSize: 15.0.sp, textWeight: FontWeight.bold,textColor: maincolor,fontFamily: "Acme",))])
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                fixedSize: Size(140.h, 45.w),
+                primary: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.sp))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Image.asset(width: 30, height: 25, "assets/images/google.png"),
+                const Text(
+                  "Google",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 30.h,
+          ),
+          ElevatedButton(
+              onPressed: () {
+                Get.toNamed(Routes.HOME_SCREEN);
+              },
+              style: ElevatedButton.styleFrom(
+                  fixedSize: Size(290.w, 55.h),
+                  primary: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30))),
+              child: TextCustomStyle(
+                textData: "Get Started",
+                textSize: 24.0.sp,
+                textWeight: FontWeight.bold,
+                textColor: blackColor,
+              )),
+          SizedBox(
+            height: 30.h,
+          ),
+          Wrap(children: [
+            Text("Already have an account?",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+            GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routes.LOGIN_SCREEN);
+                },
+                child: TextCustomStyle(
+                  textData: "Sign In",
+                  textSize: 15.0.sp,
+                  textWeight: FontWeight.bold,
+                  textColor: maincolor,
+                  fontFamily: "Acme",
+                ))
+          ])
         ],
       ),
     );
