@@ -74,8 +74,7 @@ final  confirmOrderController =Get.put( ConfirmOrderController());
                   Padding(
                     padding: const EdgeInsets.only(bottom:10.0),
                     child: ElevatedButton(style: ElevatedButton.styleFrom(
-                      fixedSize: Size(340.w, 55.h),
-                      primary: Colors.white,
+                      fixedSize: Size(340.w, 55.h), backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))
                     ),
                       onPressed: (){

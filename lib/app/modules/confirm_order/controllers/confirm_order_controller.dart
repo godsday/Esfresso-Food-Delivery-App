@@ -6,7 +6,6 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 class ConfirmOrderController extends GetxController {
   //TODO: Implement ConfirmOrderController
 final _razorpay = Razorpay();
-  final count = 0.obs;
   @override
   void onInit() {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
@@ -26,7 +25,6 @@ _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     super.onClose();
   }
 
-  void increment() => count.value++;
 
   void _handlePaymentSuccess(PaymentSuccessResponse response){
     print(response);
@@ -67,10 +65,10 @@ _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
 //   }
 var options = {
   'key': 'rzp_test_9fw79Jg8mf9TG9',
-  'amount': 5000, //in the smallest currency sub-unit.
+  'amount': 5000, 
   'name': 'Acme Corp.',
   'description': 'Fine T-Shirt',
-  'timeout': 60, // in seconds
+  'timeout': 60, 
   'prefill': {
     'contact': '9123456789',
     'email': 'gaurav.kumar@example.com'
@@ -78,7 +76,6 @@ var options = {
 };
 
 void option(){
-
   try {
     _razorpay.open(options);
   } catch (e) {
