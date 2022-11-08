@@ -1,4 +1,6 @@
 import 'package:esfresso/app/constants/constants.dart';
+import 'package:esfresso/app/modules/introductionScreen/views/introduction_screen_view.dart';
+import 'package:esfresso/app/modules/mapScreen/views/map_screen_view.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +30,12 @@ class AddLocationScreenView extends GetView<AddLocationScreenController> {
                TextCustomStyle(textData: "Esfresso Uses Your Location \n   to Sw Nearest Restaurent", textSize: 18.0, textWeight: FontWeight.bold,fontFamily: "Acme",),
                SizedBox(height: 20.h,),
               ElevatedButton(onPressed: (){
-                Get.toNamed(Routes.MAP_SCREEN);
-              },style: ElevatedButton.styleFrom(primary: maincolor,fixedSize: const Size(270, 42)),
+                Get.to(()=>MapScreenView(),transition: Transition.fadeIn,duration: Duration(milliseconds:1200 ));
+              },style: ElevatedButton.styleFrom(backgroundColor: maincolor,fixedSize: const Size(270, 42)),
                child: const Text("Use Current Location")),
                 ElevatedButton(onPressed: (){
-                  Get.toNamed(Routes.INTRODUCTION_SCREEN);
-                },style: ElevatedButton.styleFrom(primary:HexColor('#ffefef') ,fixedSize: const Size(270, 42),
+                Get.to(()=>IntroductionScreenView(),transition: Transition.fadeIn,duration: Duration(milliseconds:1200 ));
+                },style: ElevatedButton.styleFrom(backgroundColor:HexColor('#ffefef') ,fixedSize: const Size(270, 42),
                 side:BorderSide(color: Colors.blueGrey.shade100)),
                child: const Text("Use Another Location",style:  TextStyle(color: Colors.black),)),
                                SizedBox(height: 20.h,),

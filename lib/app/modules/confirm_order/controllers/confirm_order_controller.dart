@@ -1,16 +1,14 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class ConfirmOrderController extends GetxController {
-  //TODO: Implement ConfirmOrderController
-final _razorpay = Razorpay();
+  final _razorpay = Razorpay();
   @override
   void onInit() {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-_razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-_razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     super.onInit();
   }
 
@@ -25,8 +23,7 @@ _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     super.onClose();
   }
 
-
-  void _handlePaymentSuccess(PaymentSuccessResponse response){
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print(response);
     // verifySignature(
     //   signature: response.signature,
@@ -34,17 +31,17 @@ _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     //   orderId:response.orderId.
     // );
   }
-  void _handlePaymentError(PaymentFailureResponse response){
+
+  void _handlePaymentError(PaymentFailureResponse response) {
     print(response);
 
-    Get.snackbar(response.message??"", "");
+    Get.snackbar(response.message ?? "", "");
   }
 
-  void _handleExternalWallet(ExternalWalletResponse response){
+  void _handleExternalWallet(ExternalWalletResponse response) {
     print(response);
 
-    Get.snackbar(response.walletName??"", "");
-
+    Get.snackbar(response.walletName ?? "", "");
   }
 
 //   void createOrder(){
@@ -63,24 +60,20 @@ _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
 // };
 
 //   }
-var options = {
-  'key': 'rzp_test_9fw79Jg8mf9TG9',
-  'amount': 5000, 
-  'name': 'Acme Corp.',
-  'description': 'Fine T-Shirt',
-  'timeout': 60, 
-  'prefill': {
-    'contact': '9123456789',
-    'email': 'gaurav.kumar@example.com'
-  }
-};
+  var options = {
+    'key': 'rzp_test_WNox17kjHIMdWn',
+    'amount': 5000,
+    'name': 'Acme Corp.',
+    'description': 'Fine T-Shirt',
+    'timeout': 60,
+    'prefill': {'contact': '9123456789', 'email': 'gaurav.kumar@example.com'}
+  };
 
-void option(){
-  try {
-    _razorpay.open(options);
-  } catch (e) {
-    debugPrint(e.toString());
-    
+  void option() {
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
-}
 }

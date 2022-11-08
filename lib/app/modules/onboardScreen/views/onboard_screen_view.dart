@@ -7,10 +7,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
+import '../../addLocationScreen/views/add_location_screen_view.dart';
 import '../controllers/onboard_screen_controller.dart';
 
 class OnboardScreenView extends GetView<OnboardScreenController> {
-  const OnboardScreenView({Key? key}) : super(key: key);
+   OnboardScreenView({Key? key}) : super(key: key);
+  final onboardController=Get.put(OnboardScreenController());
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -24,9 +26,9 @@ class OnboardScreenView extends GetView<OnboardScreenController> {
           Container(
             width:width,
             height: 650.h,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
               borderRadius: const BorderRadius.only(bottomLeft:Radius.circular(30),bottomRight:Radius.circular(30)),
-              color: Colors.white
+              color: Colors.grey.withOpacity(0.7)
             ),
             child: SafeArea(
               child: Column(
@@ -64,17 +66,25 @@ class OnboardScreenView extends GetView<OnboardScreenController> {
               ]),
             ),
           ),
-           SizedBox(height: 34.h,),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              fixedSize: const Size(50, 50),
-              primary: Colors.amber,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-              
-            ),
-            onPressed: (){
-              Get.offAllNamed(Routes.ADD_LOCATION_SCREEN);
-            },child :const Icon( Icons.arrow_forward_ios_outlined))
+           SizedBox(height: 64.h,),
+          GetBuilder<OnboardScreenController>(
+            builder: (context) {
+              return SlideTransition(
+                position: Tween<Offset>(begin:const Offset(4,0),end:Offset.zero).animate(CurvedAnimation(parent: onboardController.buttonAnimationController, curve: Curves.elasticIn)),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(50, 50),
+                    backgroundColor: Colors.grey.withOpacity(0.7),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+                    
+                  ),
+                  onPressed: (){
+                    onboardController.changeButtonDirection();
+               
+                  },child :const Icon( Icons.arrow_forward_ios_outlined,color: Colors.black,)),
+              );
+            }
+          )
         ],
       ),
       

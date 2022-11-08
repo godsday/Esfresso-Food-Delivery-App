@@ -64,7 +64,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ONBOARD_SCREEN,
-      page: () => const OnboardScreenView(),
+      page: () =>  OnboardScreenView(),
       binding: OnboardScreenBinding(),
     ),
     GetPage(
@@ -74,7 +74,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.INTRODUCTION_SCREEN,
-      page: () => const IntroductionScreenView(),
+      page: () =>  IntroductionScreenView(),
       binding: IntroductionScreenBinding(),
     ),
     GetPage(

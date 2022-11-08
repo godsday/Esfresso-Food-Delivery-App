@@ -13,7 +13,7 @@ import '../controllers/map_screen_controller.dart';
 class MapScreenView extends GetView<MapScreenController> {
   MapScreenView({Key? key}) : super(key: key);
   // Completer<GoogleMapController> _controller = Completer();
-  final mapScreenController = MapScreenController();
+  final mapScreenController = Get.put(MapScreenController());
   static final CameraPosition _initialCameraPosition = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.323,
@@ -54,42 +54,44 @@ class MapScreenView extends GetView<MapScreenController> {
   //     strokeWidth: 5,
   //     fillColor: Colors.transparent);
 
-  Set<Marker> markers = {};
+  // Set<Marker> markers = {};
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: GetBuilder<MapScreenController>(
-        builder: (controller) {
-          return GoogleMap(
-            mapType: MapType.normal,
-            zoomControlsEnabled:false,
-           // _kgoogleplexMarker, _kgoogleWhereMarker
-            //   },
-            // polylines: {
-            //   _kPolyline,
-            // },
-            //  polygons: {_kploygon},
-            initialCameraPosition: _initialCameraPosition,
-            onMapCreated: (GoogleMapController controller) {
-              //   _controller.complete(controller);
-             mapScreenController.googleMapController = controller;
-            },
-             markers:{
-                 (Marker(
-                markerId: MarkerId('current location'),
-                position: mapScreenController.destination,
-                icon: BitmapDescriptor.defaultMarker,
-              ))
-              }
-           
-          );
-        }
-      ),
-       //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    return
+      Scaffold(
+        body: GetBuilder<MapScreenController>(
+          builder: (controller) {
+            return GoogleMap(
+              mapType: MapType.normal,
+              zoomControlsEnabled:false,
+             // _kgoogleplexMarker, _kgoogleWhereMarker
+              //   },
+              // polylines: {
+              //   _kPolyline,
+              // },
+              //  polygons: {_kploygon},
+              initialCameraPosition: _initialCameraPosition,
+              onMapCreated: (GoogleMapController controller) {
+                //   _controller.complete(controller);
+               mapScreenController.googleMapController = controller;
+              },
+               markers:{
+                   (Marker(
+                  markerId: MarkerId('current location'),
+                  position: mapScreenController.destination,
+                  icon: BitmapDescriptor.defaultMarker,
+                ))
+                }
+             
+            );
+          }
+        ),
+       
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         // hoverColor: Colors.amber,
         onPressed: () async {
-         mapScreenController.currentLocation();
+        mapScreenController.currentLocation();
           // Position position = await _determinePosition();
           // googleMapController.animateCamera(CameraUpdate.newCameraPosition(
           //   CameraPosition(
@@ -101,7 +103,7 @@ class MapScreenView extends GetView<MapScreenController> {
           // googleMapController.animateCamera(cameraUpdate)
         },
         child: Icon(Icons.location_history),
-      ),
+      )
     );
   }
 

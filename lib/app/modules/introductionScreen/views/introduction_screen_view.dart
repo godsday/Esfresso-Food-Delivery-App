@@ -1,15 +1,20 @@
 import 'package:esfresso/app/constants/constants.dart';
+import 'package:esfresso/app/modules/homeScreen/views/home_screen_view.dart';
+import 'package:esfresso/app/modules/loginScreen/views/login_screen_view.dart';
+import 'package:esfresso/app/modules/signupScreen/views/signup_screen_view.dart';
 import 'package:esfresso/app/routes/app_pages.dart';
 import 'package:esfresso/app/widgets/custom_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'dart:math' as math;
 
 import 'package:get/get.dart';
 
 import '../controllers/introduction_screen_controller.dart';
 
 class IntroductionScreenView extends GetView<IntroductionScreenController> {
-  const IntroductionScreenView({Key? key}) : super(key: key);
+   IntroductionScreenView({Key? key}) : super(key: key);
+  final indroductionController = Get.put(IntroductionScreenController());
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -49,11 +54,11 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
                   top: 40.h,
                   child: ElevatedButton(
                       onPressed: () {
-                        Get.offNamed(Routes.SIGNUP_SCREEN);
+                        Get.to(()=>SignupScreenView(),transition: Transition.fadeIn,duration: Duration(milliseconds: 1200));
                       },
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(85.h, 1.w),
-                          primary: Colors.white,
+                          backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30))),
                       child: TextCustomStyle(
@@ -64,18 +69,29 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
                         textColor: maincolor,
                       ))),
               Positioned(
-                bottom: -189.h,
-                child: Image(
-                  height: 400.h,
-                  width: 300.w,
-                  image: const AssetImage("assets/images/pizza.png"),
-                  fit: BoxFit.cover,
+                bottom: -159.h,
+                left: 45,
+                child: AnimatedBuilder(
+                  animation:indroductionController.controller ,
+                  builder: (_,child) {
+                    return Transform.rotate(angle: indroductionController.controller.value * .5 *8,
+                    
+                    child: child,);
+                  },
+                    
+                    child: Image(
+                      height: 400.h,
+                      width: 300.w,
+                      image: const AssetImage("assets/images/pizza.png"),
+                      fit: BoxFit.cover,
+                    )
+                  
                 ),
               )
             ],
           ),
           SizedBox(
-            height: 120.h,
+            height: 125.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -109,7 +125,7 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
             onPressed: () {},
             style: ElevatedButton.styleFrom(
                 fixedSize: Size(140.h, 45.w),
-                primary: Colors.white,
+                backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.sp))),
             child: Row(
@@ -128,11 +144,11 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
           ),
           ElevatedButton(
               onPressed: () {
-                Get.toNamed(Routes.HOME_SCREEN);
+                Get.to(()=>HomeScreenView(),transition: Transition.fadeIn,duration: Duration(milliseconds: 1200));
               },
               style: ElevatedButton.styleFrom(
                   fixedSize: Size(290.w, 55.h),
-                  primary: Colors.white,
+                  backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30))),
               child: TextCustomStyle(
@@ -149,7 +165,7 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
             GestureDetector(
                 onTap: () {
-                  Get.toNamed(Routes.LOGIN_SCREEN);
+                  Get.to(()=>LoginScreenView(),transition: Transition.fadeIn,duration: Duration(milliseconds: 1200));
                 },
                 child: TextCustomStyle(
                   textData: "Sign In",
@@ -165,36 +181,6 @@ class IntroductionScreenView extends GetView<IntroductionScreenController> {
   }
 }
 
-class WaveClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-    path.lineTo(0, size.height / 1.2);
-    path.quadraticBezierTo(size.width, size.height, size.width, size.height);
-    path.lineTo(size.width, 0);
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return true;
-  }
-}
-// class Curve1Clipper extends CustomClipper<Path> {
-//   @override
-//   getClip(Size size) {
-//     Path path = Path();
-//     path.lineTo(0, size.height / 1.17);
-//     path.quadraticBezierTo(size.width, size.height, size.width, size.height);
-//     path.lineTo(size.width, 0);
-//     return path;
-//   }
-
-//   @override
-//   bool shouldReclip(covariant CustomClipper oldClipper) {
-//     return true;
-//   }
-// }
 class CurveClipper extends CustomClipper<Path> {
   @override
   getClip(Size size) {
@@ -211,3 +197,6 @@ class CurveClipper extends CustomClipper<Path> {
     return true;
   }
 }
+
+
+
